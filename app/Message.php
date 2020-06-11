@@ -14,4 +14,9 @@ class Message extends Model
     public $timestamps = false;
 
     protected $dates = ['created_at', 'read_at'];
+
+    public function from()
+    {
+        return $this->belongsTo(User::class, 'from_id');
+    }
 }
