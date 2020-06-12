@@ -2,6 +2,6 @@
 
     @section('main')
 
-    <a> ezfezfezfezf </a>
+    <a> Page d'acceuil </a>
 
     @endsection('main')
