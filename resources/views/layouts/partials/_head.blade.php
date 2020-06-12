@@ -12,5 +12,5 @@
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
 </script>
 <title>Laravel</title>
-<link href="style/navbar.css">
-<link href="style/main.css">
+<link href="style/navbar.css" rel="stylesheet">
+<link href="/style/main.css" rel="stylesheet">

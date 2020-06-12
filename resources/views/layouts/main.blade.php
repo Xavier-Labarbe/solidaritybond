@@ -15,8 +15,8 @@
         @yield('main')
     </main>
 
-    <footer>
-        @include('layouts/partials/_navbar')
+    <footer id="footer">
+        @include('layouts/partials/_footer')
     </footer>
 </body>
 
