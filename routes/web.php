@@ -17,14 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
+Route::get('ez', function () {
+    return view('layouts/app');
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-=======
 Auth::routes();
-
 Route::get('/home', 'ConversationsController@index')->name('home');
 Route::get('/conversations', 'ConversationsController@index')->name('conversations');
 Route::get('/conversations/{user}', 'ConversationsController@show')
@@ -32,4 +32,3 @@ Route::get('/conversations/{user}', 'ConversationsController@show')
     ->name('conversations.show');
 Route::post('/conversations/{user}', 'ConversationsController@store')
     ->middleware('can:talkTo,user');
->>>>>>> 12a15d7aa531fe9568b52be1267a42f4f999c2c7
