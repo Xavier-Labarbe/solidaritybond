@@ -5,6 +5,7 @@ use App\Message;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 
 Class ConversationRepository {
     /**
@@ -54,7 +55,7 @@ Class ConversationRepository {
 
     /**
      * @param int $userId
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function unreadCount (int $userId)
     {

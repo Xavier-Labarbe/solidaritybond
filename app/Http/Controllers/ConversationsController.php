@@ -63,7 +63,7 @@ class ConversationsController extends Controller
             $this->authManager->user()->id,
             $user->id
         );
-        $user->notify(new MessageReceived($message));
+        //$user->notify(new MessageReceived($message));
         return redirect(route('conversations.show', ['user' => $user->id]));
     }
 
