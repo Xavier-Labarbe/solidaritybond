@@ -4,8 +4,8 @@
 
     @section('main')
 
-        <a> ezfezfezfezf </a>
+    <a> ezfezfezfezf </a>
 
     @endsection('main')
-</body>
 
+</body>
