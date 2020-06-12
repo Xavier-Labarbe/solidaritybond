@@ -14,7 +14,7 @@
         </main>
 
         <footer>
-            <!-- go include le footer -->
+            @include('layouts/partials/_footer')
         </footer>
     </body>
 </html>
