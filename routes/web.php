@@ -17,14 +17,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/account', function (){
+Route::get('/account', function () {
     return view('account');
 });
 
-Route::get('/appointment', function (){
+Route::get('/appointment', function () {
     return view('appointment');
 });
 
+Route::get('/legalNotice', function () {
+    return view('legalNotice');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
 
 Auth::routes();
 

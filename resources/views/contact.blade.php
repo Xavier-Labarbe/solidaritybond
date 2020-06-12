@@ -2,6 +2,6 @@
 
 @section('main')
 
-<a> Interface de paiement </a>
+<a> Contacts </a>
 
 @endsection('main')

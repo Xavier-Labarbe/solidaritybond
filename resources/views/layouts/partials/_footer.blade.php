@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body footer_container">
 
-        <img src="image/logo_fablab.png" width="50px" />
+        <a href="/"><img src="image/logo_fablab.png" width="50px" /></a>
 
         <div>
             <i class="fab fa-facebook fa-2x "></i>
@@ -10,10 +10,11 @@
         </div>
         <div>
             <p style="text-align: center">Nos sponsors</p>
-            <img src="image/RPVI.png" width="140px" />
+            <a target="_blank" rel="noopener noreferrer" href="https://www.rpvi.fr"> <img src="image/RPVI.png"
+                    width="140px" /></a>
         </div>
-        <a href="/views/legalNotice">Mentions légales</a>
-        <a>Contact</a>
+        <a href="/legalNotice">Mentions légales</a>
+        <a href="/contact">Contact</a>
 
     </div>
 </div>
