@@ -17,14 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('ez', function () {
-    return view('layouts/app');
+Route::get('/account', function (){
+    return view('account');
 });
 
+Route::get('/appointment', function (){
+    return view('appointment');
+});
+
+
 Auth::routes();
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
-Auth::routes();
+
 Route::get('/home', 'ConversationsController@index')->name('home');
 Route::get('/conversations', 'ConversationsController@index')->name('conversations');
 Route::get('/conversations/{user}', 'ConversationsController@show')
