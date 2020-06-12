@@ -31,3 +31,9 @@
 .column {
     text-align: center;
 }
+
+body {
+    background-image:url(../picture/fond.jpg);
+    background-repeat:no-repeat;
+    background-size: cover;
+}
