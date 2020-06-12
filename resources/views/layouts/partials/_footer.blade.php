@@ -1,4 +1,4 @@
-<footer>
+<footer id="footer">
     <div class="card">
         <div class="card-header">
             Footer
