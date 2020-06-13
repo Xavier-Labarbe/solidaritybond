@@ -15,7 +15,7 @@
 <link href="/style/welcome.css" rel="stylesheet">
 
 
-<!-- Bootstrap -->
+<!-- Bootstrap0 -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
 </script>
@@ -27,5 +27,9 @@
 
 <!-- Font awesome -->
 
+<title>Laravel</title>
+<link href="style/navbar.css" rel="stylesheet">
+<link href="/style/main.css" rel="stylesheet">
+<link href="/style/welcome.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
