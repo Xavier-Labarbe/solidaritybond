@@ -1,4 +1,5 @@
 @auth
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand navbar_logo" href="/"><img src="image/logo_fablab.png" width="40px" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -13,15 +14,12 @@
       <a class="nav-item nav-link" href="#">Calendrier</a>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        
-          {{ Auth::user()->name }}
-         
+          {{ Auth::user()->first_name }}         
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="account">Mon compte</a>
           <a class="dropdown-item" href="logout">Se déconnecter</a>
         </div>
-        
       </li>
     </div>
   </div>
