@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
     @section('main')
-    <link href="{{ URL::asset('style/welcome.css') }}" rel="stylesheet">
 
     <div class="card corp">
         <h5 class="card-header">Nos services</h5>
