@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
     @section('main')
-    <link href="{{ URL::asset('style/welcome.css') }}" rel="stylesheet">
 
     <div class="card corp">
         <h5 class="card-header">Nos services</h5>
@@ -29,7 +28,7 @@
       
       <div class="card mb-3 corp">
           <div class="row no-gutters">
-            <div class="col-md-8">
+            <div class="col-md-8 secondcardbody">
               <div class="card-body">
                 <h5 class="card-title">Le Fablab de CESI Bordeaux</h5>
                 <br />
