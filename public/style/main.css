@@ -3,6 +3,9 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
+    background-image:url(../image/fond.jpg);
+    background-repeat: repeat-y;
+    background-size: cover;
 }
 #container {
     min-height: 100%;
@@ -10,9 +13,7 @@ body {
 }
 #footer {
     position: absolute;
-    bottom: 0;
     width: 100%;
-    background: black;
 }
 
 .footer_container {
