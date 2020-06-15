@@ -1,0 +1,13 @@
+.accountinfo {
+    width: 35%;
+    padding: 10px;
+    margin: 20px;
+    float: left;
+}
+
+.accountmessage {
+    width: 55%;
+    /*padding: 10px;*/
+    margin: 20px;
+    float: right;
+}

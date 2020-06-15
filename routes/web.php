@@ -53,3 +53,5 @@ Route::get('/conversations/{user}', 'ConversationsController@show')
     ->name('conversations.show');
 Route::post('/conversations/{user}', 'ConversationsController@store')
     ->middleware('can:talkTo,user');
+
+Route::post('/account', 'AccountController@index')->name('account');
