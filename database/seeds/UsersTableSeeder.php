@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
             'first_name'=>"Elea",
             'name' =>"La Chomeuse",
             'email'=>"Elea@viacesi.fr",
-            'password' => bcrypt("chomeuse"),
+            'password' => bcrypt("123456789"),
             'status' =>(2)
         ]);
 
@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
            'first_name'=>"Xavier",
            'name' =>"Labarbe",
            "email"=>"xavier@viacesi.fr",
-           "password" => bcrypt("chomeuse"),
+           "password" => bcrypt("123456789"),
             'status' =>(1)
        ]);
 
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
            'first_name'=>"Pierre",
            'name' =>"Forques",
            "email"=>"pierre@viacesi.fr",
-           "password" => bcrypt("chomeuse"),
+           "password" => bcrypt("123456789"),
            'status' =>(1)
        ]);
 
@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
            'first_name'=>"Elouan",
            'name' =>"Jeannot",
            "email"=>"elouan@viacesi.fr",
-           "password" => bcrypt("chomeuse"),
+           "password" => bcrypt("123456789"),
            'status' =>(1)
        ]);
 
@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
            'first_name'=>"Matheo",
            'name' =>"Berger",
            "email"=>"matheo@viacesi.fr",
-           "password" => bcrypt("chomeuse"),
+           "password" => bcrypt("123456789"),
            'status' =>(1)
        ]);
     }

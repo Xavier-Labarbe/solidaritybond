@@ -37,6 +37,13 @@ Route::get('/calendar', function () {
     return view('calendar');
 });
 
+Route::post('/calendar', function(){
+    $link = request('link');
+    App\User::where('id', Auth::user()->id)->update(['outlookLink' => $link]);
+    
+    return redirect('/calendar');
+});
+
 Route::get('/helpCalendar', function () {
     return view('helpCalendar');
 });
