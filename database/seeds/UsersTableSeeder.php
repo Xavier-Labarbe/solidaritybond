@@ -12,33 +12,43 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         Illuminate\Support\Facades\DB::table('users')->insert([
-            'name'=>"Elea",
-            "email"=>"Elea@viacesi.fr",
-            "password" => bcrypt("chomeuse")
+            'first_name'=>"Elea",
+            'name' =>"La Chomeuse",
+            'email'=>"Elea@viacesi.fr",
+            'password' => bcrypt("chomeuse"),
+            'status' =>(2)
         ]);
 
         Illuminate\Support\Facades\DB::table('users')->insert([
-           'name'=>"Xavier",
+           'first_name'=>"Xavier",
+           'name' =>"Labarbe",
            "email"=>"xavier@viacesi.fr",
-           "password" => bcrypt("chomeuse")
+           "password" => bcrypt("chomeuse"),
+            'status' =>(1)
        ]);
 
        Illuminate\Support\Facades\DB::table('users')->insert([
-           'name'=>"Pierre",
+           'first_name'=>"Pierre",
+           'name' =>"Forques",
            "email"=>"pierre@viacesi.fr",
-           "password" => bcrypt("chomeuse")
+           "password" => bcrypt("chomeuse"),
+           'status' =>(1)
        ]);
 
        Illuminate\Support\Facades\DB::table('users')->insert([
-           'name'=>"Elouan",
+           'first_name'=>"Elouan",
+           'name' =>"Jeannot",
            "email"=>"elouan@viacesi.fr",
-           "password" => bcrypt("chomeuse")
+           "password" => bcrypt("chomeuse"),
+           'status' =>(1)
        ]);
 
        Illuminate\Support\Facades\DB::table('users')->insert([
-           'name'=>"Matheo",
+           'first_name'=>"Matheo",
+           'name' =>"Berger",
            "email"=>"matheo@viacesi.fr",
-           "password" => bcrypt("chomeuse")
+           "password" => bcrypt("chomeuse"),
+           'status' =>(1)
        ]);
     }
 }
