@@ -2,12 +2,13 @@
     <div class="row">
         <div class="col-md-3">
             <div class="list-group">
+                <template v-for="conversation in conversations">
                <a class="list-group-item d-flex justify-content-between align-items-center">
-                   Pierre {{ user }}
-                   <span class="badge badge-pill bad-primary">0</span>
+                   {{ conversation.name }}
+                   <span class="badge badge-pill bad-primary" v-if="conversation.unread">{{ conversations.unread }}</span>
                 </a>
+                </template>
             </div>
-            {{conversations}}
         </div>
 
     </div>
