@@ -28,7 +28,7 @@ export default new Vuex.Store({
         }
     },
     mutations: {
-        addMessages: function (state, {conversations}) {
+        addConversations: function (state, {conversations}) {
             let obj = {}
             conversations.forEach((conversation) => {
                 obj[conversation.id] = conversation
@@ -39,7 +39,11 @@ export default new Vuex.Store({
     actions: {
         loadConversations: async function (context) {
            let response = await get('/api/conversations')
-            context.commit("addMessages", {conversations: response.conversations})
+            context.commit('addConversations', {conversations: response.conversations})
+        },
+        loadMessages: async function (context, conversationId) {
+            let reponse = await get('/api/conversations/' + conversationId)
+            context.commit('addMessages', {messages: reponse.messages})
         }
     }
 })

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Messagerie from "./components/MessagerieComponent";
 import store from './store/store';
+import MessagesComponent from "./components/MessagesComponent";
 
 Vue.use(VueRouter)
 
@@ -11,7 +12,7 @@ if ($messagerie) {
 
     const routes = [
         {path: '/'},
-        {path: '/:id', name: 'conversation'}
+        {path: '/:id', component: MessagesComponent, name: 'conversation'}
     ]
 
     const router = new VueRouter({
