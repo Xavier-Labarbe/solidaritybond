@@ -31,3 +31,11 @@ html, body {
     align-items: center;
     padding-left: 1em;
 }
+
+.legal {
+    width: 95%;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 20px;
+    padding: 10px;
+}
