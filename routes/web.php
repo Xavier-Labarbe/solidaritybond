@@ -33,6 +33,14 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/calendar', function () {
+    return view('calendar');
+});
+
+Route::get('/helpCalendar', function () {
+    return view('helpCalendar');
+});
+
 Auth::routes();
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
