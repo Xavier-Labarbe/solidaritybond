@@ -21,7 +21,7 @@ class ConversationsController extends Controller {
     public function index (Request $request) {
         return response()
             ->json([
-                'conversation' => $this->conversationsRepository->getConversations($request->user()->id)
+                'conversations' => $this->conversationsRepository->getConversations($request->user()->id)
             ]);
     }
 }
