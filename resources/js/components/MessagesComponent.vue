@@ -2,13 +2,18 @@
     <div class="card">
         <div class="car-header">Jhon</div>
         <div class="card-body">
-            Mes messages
+            {{messages}}
         </div>
     </div>
 </template>
 
 <script>
     export default {
+        computed: {
+            messages: function () {
+                return this.$store.getters.messages(this.$route.params.id)
+            }
+        },
         mounted() {
             this.$store.dispatch('loadMessages', this.$route.params.id)
         }

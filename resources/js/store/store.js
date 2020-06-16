@@ -25,15 +25,30 @@ export default new Vuex.Store({
     getters: {
         conversations: function (state) {
             return state.conversations
+        },
+        messages: function (state) {
+            return function (id) {
+                let conversation = state.conversations[id]
+                if (conversation && conversation.messages) {
+                    return conversation.messages
+                } else {
+                    return []
+                }
+            }
         }
     },
     mutations: {
         addConversations: function (state, {conversations}) {
-            let obj = {}
-            conversations.forEach((conversation) => {
-                obj[conversation.id] = conversation
+            conversations.forEach((c) => {
+                let conversation = state.conversations[c.id] || {}
+                conversation = {...conversation, ...c}
+                state.conversations = {...state.conversations, ...{[c.id]: conversation}}
             })
-            state.conversations = obj
+        },
+        addMessages: function (state, {messages, id}) {
+            let conversation = state.conversations[id] || {}
+            conversation.messages = messages
+            state.conversations = {...state.conversations, ...{[id]: conversation}}
         }
     },
     actions: {
@@ -42,8 +57,8 @@ export default new Vuex.Store({
             context.commit('addConversations', {conversations: response.conversations})
         },
         loadMessages: async function (context, conversationId) {
-            let reponse = await get('/api/conversations/' + conversationId)
-            context.commit('addMessages', {messages: reponse.messages})
+            let response = await get('/api/conversations/' + conversationId)
+            context.commit('addMessages', {messages: response.messages, id: conversationId})
         }
     }
 })
