@@ -7,15 +7,16 @@ const fetchApi = async function (url, options = {}) {
     credentials: 'same-origin',
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        'X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
     },
         ...options
 })
     if (response.ok) {
         return response.json()
     } else {
-        let error = await response.json()
-        throw new Error(error.message)
+        throw await response.json()
     }
 }
 export default new Vuex.Store({
