@@ -41,7 +41,6 @@ class AccountController extends Controller
         {
             $this->changeinfo($req);
             return back();
-            //return view('account');
         }
     }
 
