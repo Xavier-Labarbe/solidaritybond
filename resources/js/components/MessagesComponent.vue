@@ -17,7 +17,17 @@
             }
         },
         mounted() {
-            this.$store.dispatch('loadMessages', this.$route.params.id)
+            this.loadMessages()
+        },
+        watch: {
+            '$route.params.id': function () {
+                this.loadMessages()
+            }
+        },
+        methods: {
+            loadMessages () {
+                this.$store.dispatch('loadMessages', this.$route.params.id)
+            }
         }
     }
 </script>
