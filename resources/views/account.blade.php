@@ -70,7 +70,7 @@
             </div>
 
             <div class="form-group">
-                <label>Veuillez taper votre mot de passe avant de sauvegarder</label>
+                <strong>Veuillez taper votre mot de passe actuel avant de sauvegarder</strong>
                 <input type="password" name="Password" class="form-control">
                 @error('Password')
                     <div class="text-danger">

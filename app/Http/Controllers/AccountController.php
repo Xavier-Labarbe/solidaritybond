@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Hash;
+
 use Auth;
 
 use App\User;
@@ -15,37 +17,42 @@ class AccountController extends Controller
     public function index (Request $req)
     {
         return $this->validator($req);
-        //return view('account');
     }
 
-    protected function validator(Request $data)
-    {
-         $validate = Validator::make($data->all(), [
+    protected function validator(Request $req)
+    {        
+        $validate = Validator::make($req->all(), [
             'Name' => ['required', 'string', 'max:255'],
             'Firstname' => ['required', 'string', 'max:255'],
             'Address' => ['required', 'string', 'max:255'],
-            'Email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'Email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.Auth::user()->id],
             'Phone' => ['required', 'string', 'max:14'],
-            'Newpassword' => ['string', 'min:8', 'confirmed']
+            'Newpassword' => $req->Newpassword != null ?'string|min:8|confirmed': ''
         ]);
 
-        if ($validate->fails()){
+        if ( !Hash::check($req->Password, Auth::user()->password) ) {
+            $validate->errors()->add('Password', 'Your current password is incorrect.');
+        }
+        
+        if ($validate->errors() != '[]'){
             return view('account')->withErrors($validate->errors());
         }
         else
         {
-            echo 'ok';
-            //return $this->changeinfo($req);
+            $this->changeinfo($req);
+            return back();
+            //return view('account');
         }
     }
 
     public function changeinfo (Request $req)
-    {
-        //crypter mot de passe
-        
+    {       
         User::where('id', Auth::user()->id)
-        ->update(['name'=>$req->Name, 'first_name'=>$req->Firstname, 'address' => $req->Address, 'email'=>$req->Email, 'phone'=>$req->Phone,]);
+        ->update(['name'=>$req->Name, 'first_name'=>$req->Firstname, 'address' => $req->Address, 'email'=>$req->Email, 'phone'=>$req->Phone]);
         
-        //return view('account');
+        if ($req->Newpassword != null){
+            User::where('id', Auth::user()->id)
+            ->update(['password'=>Hash::make($req->Newpassword)]);
+        }
     }
 }
