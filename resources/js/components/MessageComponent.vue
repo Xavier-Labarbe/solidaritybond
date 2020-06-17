@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-10">
                 <p>
-                    <strong>{{ message.from.name }}</strong><br>
+                    <strong>{{ message.from.name }} {{ user }}</strong><br>
                     {{ message.content }}
                 </p>
             </div>
@@ -15,7 +15,8 @@
 <script>
     export default {
         props: {
-            message: Object
+            message: Object,
+            user: Number
         }
     }
 </script>
