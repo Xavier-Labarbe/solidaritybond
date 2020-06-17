@@ -2,13 +2,15 @@
     <div class="card">
         <div class="car-header">Jhon</div>
         <div class="card-body">
-            {{messages}}
+            <Message :message="message" v-for="message in messages"/>
         </div>
     </div>
 </template>
 
 <script>
+    import Message from "./MessageComponent";
     export default {
+        components : {Message},
         computed: {
             messages: function () {
                 return this.$store.getters.messages(this.$route.params.id)
