@@ -5,7 +5,8 @@
             <Message :message="message" v-for="message in messages" :user = "user"/>
             <form action="" method="post">
                 <div class="form-group">
-                    <textarea name="content" placeholder="Ecrivez votre message" class="form-control"></textarea>
+                    <textarea name="content" v-model="content" placeholder="Ecrivez votre message" class="form-control"
+                              @keypress.enter="sendMessage"></textarea>
                     <div class="invalid-feedback">Une erreur</div>
                 </div>
             </form>
@@ -19,6 +20,11 @@
 
     export default {
         components : {Message},
+        data () {
+            return {
+                content: ''
+            }
+        },
         computed: {
             ...mapGetters(['user']),
             messages: function () {
@@ -36,6 +42,14 @@
         methods: {
             loadMessages () {
                 this.$store.dispatch('loadMessages', this.$route.params.id)
+            },
+            sendMessage (e) {
+                if (e.shiftKey === false) {
+                    this.$store.dispatch('sendMessage', {
+                        content: this.content,
+                        userId: this.$route.params.id
+                    })
+                }
             }
         }
     }

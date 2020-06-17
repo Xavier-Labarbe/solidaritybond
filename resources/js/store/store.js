@@ -2,13 +2,14 @@ import Vuex from 'vuex'
 import Vue from "vue";
 Vue.use(Vuex)
 
-const get = async function (url) {
+const fetchApi = async function (url, options = {}) {
     let response = await fetch(url, {
     credentials: 'same-origin',
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    }
+    },
+        ...options
 })
     if (response.ok) {
         return response.json()
@@ -66,14 +67,24 @@ export default new Vuex.Store({
     },
     actions: {
         loadConversations: async function (context) {
-           let response = await get('/api/conversations')
+           let response = await fetchApi('/api/conversations')
             context.commit('addConversations', {conversations: response.conversations})
         },
         loadMessages: async function (context, conversationId) {
             if (!context.getters.conversation(conversationId).loaded) {
-                let response = await get('/api/conversations/' + conversationId)
+                let response = await fetchApi('/api/conversations/' + conversationId)
                 context.commit('addMessages', {messages: response.messages, id: conversationId})
             }
+        },
+        sendMessage: async function (context, {content, userId}) {
+            let response = await fetchApi('/api/conversations/' + userId, {
+                method: 'POST',
+                body: JSON.stringify({
+                    content: content
+                })
+            })
+
         }
+
     }
 })
