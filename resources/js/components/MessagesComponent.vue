@@ -3,6 +3,12 @@
         <div class="car-header">Jhon</div>
         <div class="card-body">
             <Message :message="message" v-for="message in messages" :user = "user"/>
+            <form action="" method="post">
+                <div class="form-group">
+                    <textarea name="content" placeholder="Ecrivez votre message" class="form-control"></textarea>
+                    <div class="invalid-feedback">Une erreur</div>
+                </div>
+            </form>
         </div>
     </div>
 </template>
