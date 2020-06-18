@@ -31,7 +31,7 @@
 
 @else
 @php $var = \DB::table('users')->where('status', '2')->pluck('outlookLink'); @endphp
-<iframe src="@php echo($var[0]); @endphp" width="100%" height="100%">
+<iframe src="@php echo($var[0]); @endphp" class="iframecalendar">
 @endif
 
 @endsection

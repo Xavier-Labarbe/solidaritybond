@@ -1,0 +1,16 @@
+.iframecalendar {
+    width: 97%;
+    height: 97%;
+    display:block;
+    margin: 0 auto;
+}
+
+.helpcalendarcardfirstline {
+    width: 27em;
+    margin: 0 auto;
+    margin-bottom: 2%;
+}
+
+.helpcalendarcardsecondline {
+    margin: 0 auto;
+}

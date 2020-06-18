@@ -13,6 +13,8 @@
 <link href="style/navbar.css" rel="stylesheet">
 <link href="/style/main.css" rel="stylesheet">
 <link href="/style/welcome.css" rel="stylesheet">
+<link href="/style/calendar.css" rel="stylesheet">
+<link href="/style/account.css" rel="stylesheet">
 
 
 <!-- Bootstrap0 -->
@@ -28,9 +30,5 @@
 <!-- Font awesome -->
 
 <title>Laravel</title>
-<link href="style/navbar.css" rel="stylesheet">
-<link href="/style/main.css" rel="stylesheet">
-<link href="/style/welcome.css" rel="stylesheet">
-<link href="/style/account.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet">
