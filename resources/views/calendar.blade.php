@@ -2,7 +2,7 @@
 
 @section('main')
 
-@if(\Auth::user()->outlookLink == null)
+@if(\Auth::user()->outlookLink == null && Auth::user()->status == '2')
 <!--include('layouts/partials/_linkOutlook');-->
 
 <div class="card-body">
@@ -30,7 +30,8 @@
 </div>
 
 @else
-<iframe src="@php echo(\Auth::user()->outlookLink);@endphp" width="100%" height="100%">
-    @endif
+@php $var = \DB::table('users')->where('status', '2')->pluck('outlookLink'); @endphp
+<iframe src="@php echo($var[0]); @endphp" width="100%" height="100%">
+@endif
 
-    @endsection
+@endsection
