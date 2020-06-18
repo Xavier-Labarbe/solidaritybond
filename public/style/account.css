@@ -1,0 +1,17 @@
+.accountinfo {
+    width: 95%;
+    padding: 2%;
+    margin: 2%;
+    float: left;
+}
+
+.accountinput {
+    width: 95%;
+}
+@media only screen and (min-width: 1000px) {
+    .accountpassword {
+        width: 40%;
+        text-align: center;
+        margin: 0 auto;
+    }
+}

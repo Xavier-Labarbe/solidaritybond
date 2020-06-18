@@ -5,13 +5,15 @@
     margin-top: 30px;
 }
 
-.imgfablab {
-    height: auto;
-    width: 150%;
-}
+@media only screen and (min-width: 765px) {
+    .imgfablab {
+        height: auto;
+        width: 150%;
+    }
 
-.secondcardbody {
-    max-width: 50%;
+    .secondcardbody {
+        max-width: 50%;
+    }
 }
 
 .firstcardbody {
