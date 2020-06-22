@@ -22,13 +22,13 @@
                             <div class="col-md-6">
                                 <select name="client" class="col-md-7 col-form-label text-md-right" id="person">
                                     @php
-                                    $users = \DB::table('users')->pluck('name','first_name');
-                                    for($i=0;$i<sizeof($users);$i++){ print "<option selected=\" true\">".
-                                        $users["name"]
-                                        ."
-                                        </option>";
-                                        }
-                                        @endphp
+                                    $users = \DB::table('users')->get();
+                                    foreach ($users as $user) {
+                                    echo "<option selected=\"true\" value=$user->id>$user->first_name $user->name
+                                    </option>";
+                                    }
+
+                                    @endphp
                                 </select>
 
                             </div>
@@ -82,6 +82,20 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Durée du
+                                rendez-vous</label>
+
+
+                            <div class="col-md-6">
+                                <select name="duration" class="col-md-3 col-form-label text-md-right" id="duration">
+                                    <option>15 mn</option>
+                                    <option>30 mn</option>
+                                    <option>45 mn</option>
+                                    <option>1 h</option>
+                            </div>
+                        </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">

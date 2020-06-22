@@ -22,7 +22,8 @@ class AddAppointment extends Migration
             $table->text('context');
             $table->text('place');
             $table->string('date');
-            $table->string('hour');
+            $table->string('begin_hour');
+            $table->string('duration');
         });
     }
 
