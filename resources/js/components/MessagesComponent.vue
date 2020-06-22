@@ -2,20 +2,32 @@
     <div class="card">
         <div class="card-header">Xavier</div>
         <div class="card-body">
-            {{ messages }}
+            <Message :message="message" v-for="message in messages"/>
         </div>
     </div>
 </template>
 
 <script>
+    import Message from "./MessageComponent";
     export default {
+        components: {Message},
         computed: {
             messages: function () {
                 return this.$store.getters.messages(this.$route.params.id)
             }
         },
         mounted() {
-            this.$store.dispatch('loadMessages', this.$route.params.id)
+            this.loadMessages()
+        },
+        watch: {
+            '$route.params.id': function () {
+                this.loadMessages()
+            }
+        },
+        methods: {
+            loadMessages () {
+                this.$store.dispatch('loadMessages', this.$route.params.id)
+            }
         }
     }
 </script>
