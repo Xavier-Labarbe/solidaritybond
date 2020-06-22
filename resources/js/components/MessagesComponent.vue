@@ -3,10 +3,13 @@
         <div class="card-header">Xavier</div>
         <div class="card-body">
             <Message :message="message" v-for="message in messages" :user="user"/>
-            <form action="" method="post">
+            <form action="" method="post" class="messagerie__from">
                 <div class="form-group">
                     <textarea name="content" v-model="content" placeholder="Ecrivez votre message" :class="{'form-control': true, 'is-invalid': errors['content']}" @keypress.enter="sendMessage"></textarea>
                     <div class="invalid-feedback" v-if="errors['content']">{{ errors['content'].join(', ') }}</div>
+                </div>
+                <div class="messagerie__loading" v-if="loading">
+                    <div class="loader"></div>
                 </div>
                 <button class="btn btn-primary" type="submit">Envoyer</button>
             </form>
@@ -23,7 +26,8 @@
         data () {
             return {
                 content : '',
-                errors: {}
+                errors: {},
+                loading: false
             }
         },
         computed: {
@@ -46,6 +50,7 @@
             },
             async sendMessage (e) {
                 if (e.shiftKey === false) {
+                    this.loading = true
                     this.errors = {}
                     e.preventDefault();
                     try {
@@ -61,6 +66,7 @@
                             console.error(e)
                         }
                     }
+                    this.loading = false
                 }
             }
         }
