@@ -3,19 +3,21 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const get = async function (url) {
+const fetchApi = async function (url, options = {}) {
     let response = await fetch(url, {
         credentials: 'same-origin',
         headers: {
             'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        ...options
     })
     if (response.ok) {
         return response.json()
     } else {
-        let error = await response.json()
-        throw new Error(error.message)
+        throw await response.json()
     }
 }
 
@@ -54,7 +56,7 @@ export default new Vuex.Store({
         },
         addConversations: function (state, {conversations}) {
             conversations.forEach(function (c) {
-                let conversation = state.conversations[c.id] || {}
+                let conversation = state.conversations[c.id] || {messages: {}}
                 conversation = {...conversation, ...c}
                 state.conversations = {...state.conversations, ...{[c.id]: conversation}}
             })
@@ -64,18 +66,30 @@ export default new Vuex.Store({
             conversation.messages = messages
             conversation.loaded = true
             state.conversations = {...state.conversations, ...{[id]: conversation}}
-        }
+        },
+        addMessage : function (state, {message, id}) {
+            state.conversations[id].messages.push(message)
+        },
     },
     actions: {
             loadConversations: async function (context) {
-                let response = await get('/api/conversations')
+                let response = await fetchApi('/api/conversations')
                 context.commit('addConversations', {conversations: response.conversations})
             },
             loadMessages: async function (context, conversationId) {
                 if (!context.getters.conversation(conversationId).loaded) {
-                    let response = await get('/api/conversations/' + conversationId)
+                    let response = await fetchApi('/api/conversations/' + conversationId)
                     context.commit('addMessages', {messages: response.messages, id: conversationId})
                 }
+            },
+            sendMessage: async function (context, {content, userId}) {
+                let response = await fetchApi('/api/conversations/' + userId, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        content: content
+                    })
+                })
+                context.commit('addMessage', {message: response.message, id: userId})
             }
         }
 
