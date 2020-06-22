@@ -2,10 +2,10 @@
     max-height: calc(100vh - 250px);
     overflow-x: hidden;
     overflow-y: scroll;
+    position: relative;
 }
 
 .messagerie__from {
-    position: relative;
 }
 
 .messagerie__loading {

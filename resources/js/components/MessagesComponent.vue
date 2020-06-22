@@ -3,16 +3,16 @@
         <div class="card-header">Xavier</div>
         <div class="card-body messagerie__body">
             <Message :message="message" v-for="message in messages" :user="user"/>
-            <form action="" method="post" class="messagerie__from">
+            <form action="" method="post">
                 <div class="form-group">
                     <textarea name="content" v-model="content" placeholder="Ecrivez votre message" :class="{'form-control': true, 'is-invalid': errors['content']}" @keypress.enter="sendMessage"></textarea>
                     <div class="invalid-feedback" v-if="errors['content']">{{ errors['content'].join(', ') }}</div>
                 </div>
-                <div class="messagerie__loading" v-if="loading">
-                    <div class="loader"></div>
-                </div>
                 <button class="btn btn-primary" type="submit">Envoyer</button>
             </form>
+            <div class="messagerie__loading" v-if="loading">
+                <div class="loader"></div>
+            </div>
         </div>
     </div>
 </template>
@@ -34,6 +34,9 @@
             ...mapGetters(['user']),
             messages: function () {
                 return this.$store.getters.messages(this.$route.params.id)
+            },
+            count: function () {
+                return this.$store.getters.conversation(this.$route.params.id).count
             }
         },
         mounted() {
@@ -49,6 +52,24 @@
             async loadMessages () {
                 let response = await this.$store.dispatch('loadMessages', this.$route.params.id)
                 this.scrollBot()
+                if (this.messages.length < this.count) {
+                    this.$messages.addEventListener('scroll', this.onScroll)
+                }
+            },
+            async onScroll() {
+                if (this.$messages.scrollTop === 0) {
+                    this.loading = true
+                    this.$messages.removeEventListener('scroll', this.onScroll)
+                    let previousHeight = this.$messages.scrollHeight
+                    await this.$store.dispatch('loadPreviousMessages', this.$route.params.id)
+                    this.$nextTick(() => {
+                        this.$messages.scrollTop = this.$messages.scrollHeight - previousHeight
+                    })
+                    if (this.messages.length < this.count) {
+                        this.$messages.addEventListener('scroll', this.onScroll)
+                    }
+                    this.loading = false
+                }
             },
             scrollBot() {
                 this.$nextTick(() => {

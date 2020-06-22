@@ -26,9 +26,12 @@ class ConversationsController extends Controller {
 
     public function show (Request $request, User $user) {
         $messages = $this->conversationRepository->getMessagesFor($request->user()->id, $user->id);
+        if ($request->get('before')) {
+            $messages = $messages->where('created_at', '<', $request->get('before'));
+        }
         return [
             'messages' => array_reverse($messages->limit(10)->get()->toArray()),
-            'count' => $messages->count()
+            'count' => $request->get('before') ? '' : $messages->count()
         ];
     }
 

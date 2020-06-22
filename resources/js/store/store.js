@@ -68,6 +68,11 @@ export default new Vuex.Store({
             conversation.loaded = true
             state.conversations = {...state.conversations, ...{[id]: conversation}}
         },
+        prependMessages : function (state, {messages, id}) {
+            let conversation = state.conversations[id] || {}
+            conversation.messages = [...messages, ...conversation.messages]
+            state.conversations = {...state.conversations, ...{[id]: conversation}}
+        },
         addMessage : function (state, {message, id}) {
             state.conversations[id].count++
             state.conversations[id].messages.push(message)
@@ -92,6 +97,14 @@ export default new Vuex.Store({
                     })
                 })
                 context.commit('addMessage', {message: response.message, id: userId})
+            },
+            loadPreviousMessages: async function (context, conversationId) {
+                let message = context.getters.messages(conversationId)[0]
+                if (message) {
+                    let url = '/api/conversations/' + conversationId + '?before' + message.created_at
+                    let response = await fetchApi(url)
+                    context.commit('prependMessages', {id: conversationId, messages: response.messages})
+                }
             }
         }
 
