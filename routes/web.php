@@ -22,11 +22,9 @@ Route::get('/account', function () {
 });
 
 Route::get('/appointment', function () {
-    if (Auth::user()->status == 1)
-    {
+    if (Auth::user()->status == 1) {
         return view('appointmentclient');
-    }else
-    {
+    } else {
         return view('appointment');
     }
 });
@@ -43,10 +41,10 @@ Route::get('/calendar', function () {
     return view('calendar');
 });
 
-Route::post('/calendar', function(){
+Route::post('/calendar', function () {
     $link = request('link');
     App\User::where('id', Auth::user()->id)->update(['outlookLink' => $link]);
-    
+
     return redirect('/calendar');
 });
 
@@ -56,9 +54,9 @@ Route::get('/helpCalendar', function () {
 
 Auth::routes();
 
+
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/home', 'ConversationsController@index')->name('home');
 Route::get('/conversations', 'ConversationsController@index')->name('conversations');
 Route::get('/conversations/{user}', 'ConversationsController@show')
@@ -68,3 +66,4 @@ Route::post('/conversations/{user}', 'ConversationsController@store')
     ->middleware('can:talkTo,user');
 
 Route::post('/account', 'AccountController@index')->name('account');
+Route::post('/appointment', 'AppointmentController@index')->name('appointment');

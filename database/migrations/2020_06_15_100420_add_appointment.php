@@ -13,7 +13,7 @@ class AddAppointment extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table){
+        Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('from_id')->unsigned();
             $table->integer('to_id')->unsigned();
@@ -21,8 +21,8 @@ class AddAppointment extends Migration
             $table->foreign('to_id', 'to_user')->references('id')->on('users')->onDelete('cascade');
             $table->text('context');
             $table->text('place');
-            $table->dateTime('date');
-            $table->dateTime('hour');
+            $table->string('date');
+            $table->string('hour');
         });
     }
 
