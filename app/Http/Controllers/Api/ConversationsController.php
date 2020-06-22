@@ -19,19 +19,32 @@ class ConversationsController extends Controller {
     }
 
     public function index (Request $request) {
+        $conversations = $this->conversationRepository->getConversations($request->user()->id);
+        $unread = $this->conversationRepository->unreadCount($request->user()->id);
+
         return [
-                'conversations' => $this->conversationRepository->getConversations($request->user()->id)
+                'conversations' => $conversations
             ];
     }
 
     public function show (Request $request, User $user) {
-        $messages = $this->conversationRepository->getMessagesFor($request->user()->id, $user->id);
+        $messagesQuery = $this->conversationRepository->getMessagesFor($request->user()->id, $user->id);
+        $count = null;
         if ($request->get('before')) {
-            $messages = $messages->where('created_at', '<', $request->get('before'));
+            $messagesQuery = $messagesQuery->where('created_at', '<', $request->get('before'));
+        } else {
+            $count = $messagesQuery->count();
+        }
+        $messages = $messagesQuery->limit(10)->get();
+        foreach ($messages as $message) {
+            if ($message->read_at === null && $message->to_id = $request->user()->id) {
+                $this->conversationRepository->readAllFrom($message->from_id, $message->to_id);
+                break;
+            }
         }
         return [
-            'messages' => array_reverse($messages->limit(10)->get()->toArray()),
-            'count' => $request->get('before') ? '' : $messages->count()
+            'messages' => array_reverse($messages->toArray()),
+            'count' => $count
         ];
     }
 

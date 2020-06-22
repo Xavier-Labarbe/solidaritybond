@@ -54,6 +54,9 @@ export default new Vuex.Store({
         setUser: function (state, userId) {
             return state.user = userId
         },
+        markAsRead: function (state, id) {
+           state.conversations[id].unread = 0
+        },
         addConversations: function (state, {conversations}) {
             conversations.forEach(function (c) {
                 let conversation = state.conversations[c.id] || {messages: {}, count: 0}
@@ -87,6 +90,7 @@ export default new Vuex.Store({
                 if (!context.getters.conversation(conversationId).loaded) {
                     let response = await fetchApi('/api/conversations/' + conversationId)
                     context.commit('addMessages', {messages: response.messages, id: conversationId, count: response.count})
+                    context.commit('markAsRead', conversationId)
                 }
             },
             sendMessage: async function (context, {content, userId}) {
