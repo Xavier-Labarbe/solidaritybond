@@ -3,7 +3,7 @@
         <div class="row">
             <div :class="cls">
                 <p>
-                    <strong>{{ name  }}</strong><br>
+                    <strong>{{ name  }}</strong><span class="text-muted">, {{ ago }}</span><br>
                     {{ message.content }}
                 </p>
             </div>
@@ -13,6 +13,9 @@
 </template>
 
 <script>
+    import moment from 'moment'
+
+    moment.locale('fr')
     export default {
         props: {
             message: Object,
@@ -21,6 +24,9 @@
         computed: {
             isMe () {
                 return this.message.from_id === this.user
+            },
+            ago () {
+                return moment(this.message.created_at).fromNow()
             },
             cls () {
                 let cls = ['col-md-10']

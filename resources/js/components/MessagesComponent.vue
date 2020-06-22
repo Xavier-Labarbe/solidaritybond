@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header">{{ name }}</div>
         <div class="card-body messagerie__body">
-            <Message :message="message" v-for="message in messages" :user="user"/>
+            <Message :message="message" :key="message.id" v-for="message in messages" :user="user"/>
             <form action="" method="post">
                 <div class="form-group">
                     <textarea name="content" v-model="content" placeholder="Ecrivez votre message" :class="{'form-control': true, 'is-invalid': errors['content']}" @keypress.enter="sendMessage"></textarea>

@@ -18,9 +18,11 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "moment": "^2.27.0",
         "vue": "^2.6.11",
         "vue-router": "^3.3.4",
         "vuex": "^3.4.0",
+        "webpack-bundle-analyzer": "^3.8.0",
         "whatwg-fetch": "^3.0.0"
     }
 }
