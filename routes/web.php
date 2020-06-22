@@ -22,7 +22,13 @@ Route::get('/account', function () {
 });
 
 Route::get('/appointment', function () {
-    return view('appointment');
+    if (Auth::user()->status == 1)
+    {
+        return view('appointmentclient');
+    }else
+    {
+        return view('appointment');
+    }
 });
 
 Route::get('/legalNotice', function () {
