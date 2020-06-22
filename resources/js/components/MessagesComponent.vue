@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <div class="card-header">Xavier</div>
+        <div class="card-header">{{ name }}</div>
         <div class="card-body messagerie__body">
             <Message :message="message" v-for="message in messages" :user="user"/>
             <form action="" method="post">
@@ -34,6 +34,9 @@
             ...mapGetters(['user']),
             messages: function () {
                 return this.$store.getters.messages(this.$route.params.id)
+            },
+            name: function () {
+                return this.$store.getters.conversation(this.$route.params.id).name
             },
             count: function () {
                 return this.$store.getters.conversation(this.$route.params.id).count
