@@ -38,20 +38,8 @@
 
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="appointment">Espace de rendez-vous <span
-          class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="conversations">Mise en relation</a>
-      <a class="nav-item nav-link" href="#">Calendrier</a>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user"></i>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="login">Se connecter</a>
-          <a class="dropdown-item" href="register">S'inscrire</a>
-        </div>
-      </li>
+      <a class="dropdown-item" href="login">Se connecter</a>
+      <a class="dropdown-item" href="register">S'inscrire</a>
     </div>
   </div>
 </nav>
