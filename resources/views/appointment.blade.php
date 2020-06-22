@@ -2,7 +2,7 @@
 
 @section('main')
 
-@php $var = \DB::table('users')->pluck('name','first_name','id'); @endphp
+
 
 <div class="container">
     <div class="row justify-content-center">
@@ -21,8 +21,14 @@
 
                             <div class="col-md-6">
                                 <select name="client" class="col-md-7 col-form-label text-md-right" id="person">
-                                    <option selected="true">Fablab-Manager</option>
-                                    <option value="Elea">Elea</option>
+                                    @php
+                                    $users = \DB::table('users')->pluck('name','first_name');
+                                    for($i=0;$i<sizeof($users);$i++){ print "<option selected=\" true\">".
+                                        $users["name"]
+                                        ."
+                                        </option>";
+                                        }
+                                        @endphp
                                 </select>
 
                             </div>
