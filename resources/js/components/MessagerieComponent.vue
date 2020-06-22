@@ -28,6 +28,7 @@
         },
         mounted() {
             this.$store.dispatch('loadConversations')
+            this.$store.commit('setUser', this.user)
         }
     }
 </script>

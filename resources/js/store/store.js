@@ -22,9 +22,13 @@ const get = async function (url) {
 export default new Vuex.Store({
     strict: true,
     state: {
+        user: null,
         conversations: {}
     },
     getters: {
+        user: function (state) {
+            return state.user
+        },
         conversations: function (state) {
             return state.conversations
         },
@@ -45,6 +49,9 @@ export default new Vuex.Store({
         }
     },
     mutations: {
+        setUser: function (state, userId) {
+            return state.user = userId
+        },
         addConversations: function (state, {conversations}) {
             conversations.forEach(function (c) {
                 let conversation = state.conversations[c.id] || {}

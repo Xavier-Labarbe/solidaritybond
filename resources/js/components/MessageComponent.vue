@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-10">
+            <div :class="cls">
                 <p>
-                    <strong>{{ message.from.name  }}</strong><br>
+                    <strong>{{ name  }}</strong><br>
                     {{ message.content }}
                 </p>
             </div>
@@ -15,7 +15,23 @@
 <script>
     export default {
         props: {
-            message: Object
+            message: Object,
+            user: Number
+        },
+        computed: {
+            isMe () {
+                return this.message.from_id === this.user
+            },
+            cls () {
+                let cls = ['col-md-10']
+                if (this.isMe) {
+                    cls.push('offset-md-2 text-right')
+                }
+                return cls
+            },
+            name () {
+                return this.isMe ? 'Moi' : this.message.from.name
+            }
         }
     }
 </script>
