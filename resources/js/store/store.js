@@ -27,22 +27,41 @@ export default new Vuex.Store({
     getters: {
         conversations: function (state) {
             return state.conversations
+        },
+        messages: function (state) {
+            return function (id) {
+                let conversation = state.conversations[id]
+                if (conversation && conversation.messages) {
+                    return conversation.messages
+                } else {
+                    return []
+                }
+            }
         }
     },
     mutations: {
-        addMessages: function (state, {conversations}) {
-            let obj = {}
-            conversations.forEach(function (conversation) {
-                obj[conversation.id] = conversation
+        addConversations: function (state, {conversations}) {
+            conversations.forEach(function (c) {
+                let conversation = state.conversations[c.id] || {}
+                conversation = {...conversation, ...c}
+                state.conversations = {...state.conversations, ...{[c.id]: conversation}}
             })
-            state.conversations = obj
+        },
+        addMessages : function (state, {messages, id}) {
+            let conversation = state.conversations[id] || {}
+            conversation.messages = messages
+            state.conversations = {...state.conversations, ...{[id]: conversation}}
         }
     },
     actions: {
-        loadConversations: async function (context) {
-            let response = await get('/api/conversations')
-            context.commit('addMessages', {conversations: response.conversations})
-        }
+            loadConversations: async function (context) {
+                let response = await get('/api/conversations')
+                context.commit('addConversations', {conversations: response.conversations})
+            },
+            loadMessages: async function (context, conversationId) {
+                let response = await get('/api/conversations/' + conversationId)
+                context.commit('addMessages', {messages: response.messages, id: conversationId})
+            }
         }
 
     }
