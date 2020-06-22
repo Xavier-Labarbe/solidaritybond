@@ -25,9 +25,10 @@ class ConversationsController extends Controller {
     }
 
     public function show (Request $request, User $user) {
-        $messages = $this->conversationRepository->getMessagesFor($request->user()->id, $user->id)->get();
+        $messages = $this->conversationRepository->getMessagesFor($request->user()->id, $user->id);
         return [
-            'messages' => array_reverse($messages->toArray())
+            'messages' => array_reverse($messages->limit(10)->get()->toArray()),
+            'count' => $messages->count()
         ];
     }
 

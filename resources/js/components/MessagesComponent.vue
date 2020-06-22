@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="card-header">Xavier</div>
-        <div class="card-body">
+        <div class="card-body messagerie__body">
             <Message :message="message" v-for="message in messages" :user="user"/>
             <form action="" method="post" class="messagerie__from">
                 <div class="form-group">
@@ -38,6 +38,7 @@
         },
         mounted() {
             this.loadMessages()
+            this.$messages = this.$el.querySelector('.messagerie__body')
         },
         watch: {
             '$route.params.id': function () {
@@ -45,8 +46,14 @@
             }
         },
         methods: {
-            loadMessages () {
-                this.$store.dispatch('loadMessages', this.$route.params.id)
+            async loadMessages () {
+                let response = await this.$store.dispatch('loadMessages', this.$route.params.id)
+                this.scrollBot()
+            },
+            scrollBot() {
+                this.$nextTick(() => {
+                    this.$messages.scrollTop = this.$messages.scrollHeight
+                })
             },
             async sendMessage (e) {
                 if (e.shiftKey === false) {
@@ -59,6 +66,7 @@
                             userId: this.$route.params.id
                         })
                         this.content = ''
+                        this.scrollBot()
                     } catch (e) {
                         if (e.errors) {
                             this.errors = e.errors

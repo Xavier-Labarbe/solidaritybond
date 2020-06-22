@@ -1,3 +1,9 @@
+.messagerie__body{
+    max-height: calc(100vh - 250px);
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 .messagerie__from {
     position: relative;
 }
