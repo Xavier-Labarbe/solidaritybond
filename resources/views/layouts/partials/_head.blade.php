@@ -15,6 +15,7 @@
 <link href="/style/welcome.css" rel="stylesheet">
 <link href="/style/calendar.css" rel="stylesheet">
 <link href="/style/account.css" rel="stylesheet">
+<link href="/style/appointement.css" rel="stylesheet">
 
 
 <!-- Bootstrap0 -->

@@ -103,20 +103,20 @@
                         <button type="submit" class="btn btn-primary">
                             Soumettre le rendez-vous
                         </button>
-                        <small>{{ $errors->first('hour') }}</small>
-
-
                     </div>
                 </div>
-
-
                 </form>
-
+                @error('goodEntrie')
+                    <div class="alert alert-success goodentriealert" role="alert">
+                        {{ $errors->first('goodEntrie') }}
+                    </div>
+                @enderror
             </div>
-            <div class="col-md-10">
+ 
+            {{--<div class="col-md-10">
                 <div class="card">
                     <div class="card-header">Vos rendez-vous</div>
-                    {{-- @php
+                     @php
   
                 $appointments = \DB::table('appointments')->where([['id_from',
                 '=',Auth::user()->id],['date','>=',]])get();
