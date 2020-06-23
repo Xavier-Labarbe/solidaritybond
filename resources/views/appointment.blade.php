@@ -24,10 +24,11 @@
                                     @php
                                     $users = \DB::table('users')->get();
                                     foreach ($users as $user) {
+                                    if($user->id != auth::user()->id){
                                     echo "<option selected=\"true\" value=$user->id>$user->first_name $user->name
                                     </option>";
                                     }
-
+                                    }
                                     @endphp
                                 </select>
 
@@ -89,26 +90,63 @@
 
                             <div class="col-md-6">
                                 <select name="duration" class="col-md-3 col-form-label text-md-right" id="duration">
-                                    <option>15 mn</option>
-                                    <option>30 mn</option>
-                                    <option>45 mn</option>
-                                    <option>1 h</option>
+                                    <option value="00:15">15 mn</option>
+                                    <option value="00:30">30 mn</option>
+                                    <option value="00:45">45 mn</option>
+                                    <option value="1:00">1 h</option>
+                                </select>
                             </div>
                         </div>
+                </div>
+                <div class="form-group row mb-0">
+                    <div class="col-md-8 offset-md-4">
+                        <button type="submit" class="btn btn-primary">
+                            Soumettre le rendez-vous
+                        </button>
+                    </div>
+                </div>
+            </div>
 
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Soumettre le rendez-vous
+            </form>
+
+        </div>
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">Vos rendez-vous</div>
+                {{-- @php
+  
+                $appointments = \DB::table('appointments')->where([['id_from',
+                '=',Auth::user()->id],['date','>=',]])get();
+                foreach ($appointments as $appointment) {
+                echo "<div class=\"modal\" tabindex=\"-1\" role=\"dialog\">
+                    <div class=\"modal-dialog\">
+                        <div class=\"modal-content\">
+                            <div class=\"modal-header\">
+                                <h5 class=\"modal-title\">Modal title</h5>
+                                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+                                    <span aria-hidden=\"true\">&times;</span>
                                 </button>
                             </div>
+                            <div class=\"modal-body\">
+                                <p>Modal body text goes here.</p>
+                            </div>
+                            <div class=\"modal-footer\">
+                                <button type=\"button\" class=\"btn btn-secondary\"
+                                    data-dismiss=\"modal\">Close</button>
+                                <button type=\"button\" class=\"btn btn-primary\">Save changes</button>
+                            </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </div>";
+                }
+
+                @endphp --}}
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 
 @endsection('main')

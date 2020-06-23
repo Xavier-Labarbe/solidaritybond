@@ -18,10 +18,10 @@ class AppointmentController extends Controller
         $var = \DB::table('appointments')->where([
             ['place', '=', $req->place],
             ['date', '=',  $req->date],
-            ['begin_hour', '',  $req->hour],
+            // ['hour', '',  $req->hour],
         ])->get();
 
-
+        echo $var;
         $validate = Validator::make($req->all(), [
             'client' => ['required', 'string', 'max:255'],
             'reason' => ['required', 'string', 'max:255'],
@@ -29,18 +29,18 @@ class AppointmentController extends Controller
             'date' => ['required', 'string', 'max:10'],
             'hour' => ['required', 'string', 'max:5'],
         ]);
-        if ($var != "[]") {
-            echo "coucou";
-            $validate->errors()->add('hour', 'L\'heure pour la date selectionnée est déjà reservée pour ce lieu.');
-            return view('appointment')->withErrors($validate->errors());
-        }
+        // if ($var != "[]") {
+        //     echo "coucou";
+        //     $validate->errors()->add('hour', 'L\'heure pour la date selectionnée est déjà reservée pour ce lieu.');
+        //     return view('appointment')->withErrors($validate->errors());
+        // }
         $this->addAppointment($req);
     }
 
     protected function addAppointment(Request $req)
     {
         \DB::table('appointments')->insert(
-            ['from_id' => Auth::user()->id, 'to_id' => $req->client, 'context' => $req->reason, 'place' => $req->place, 'date' => $req->date, 'hour' => $req->hour]
+            ['from_id' => Auth::user()->id, 'to_id' => $req->client, 'context' => $req->reason, 'place' => $req->place, 'date' => $req->date, 'hour' => $req->hour, 'duration' => $req->duration]
         );
     }
 }
