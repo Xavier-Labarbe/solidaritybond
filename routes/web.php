@@ -23,7 +23,7 @@ Route::get('/account', function () {
 
 Route::get('/appointment', function () {
     if (Auth::user()->status == 1) {
-        return view('appointmentclient');
+        return view('appointmentClient');
     } else {
         return view('appointment');
     }
