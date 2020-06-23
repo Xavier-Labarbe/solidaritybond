@@ -98,23 +98,25 @@
                             </div>
                         </div>
                 </div>
-                <div class="form-group row mb-0">
+                <div class="form-group row mb-0 ">
                     <div class="col-md-8 offset-md-4">
                         <button type="submit" class="btn btn-primary">
                             Soumettre le rendez-vous
                         </button>
+                        <small>{{ $errors->first('hour') }}</small>
+
+
                     </div>
                 </div>
+
+
+                </form>
+
             </div>
-
-
-            </form>
-
-        </div>
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">Vos rendez-vous</div>
-                {{-- @php
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">Vos rendez-vous</div>
+                    {{-- @php
   
                 $appointments = \DB::table('appointments')->where([['id_from',
                 '=',Auth::user()->id],['date','>=',]])get();
@@ -142,10 +144,10 @@
                 }
 
                 @endphp --}}
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 

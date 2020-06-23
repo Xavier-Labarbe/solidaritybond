@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Appointment;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,6 @@ class AppointmentController extends Controller
             // ['hour', '',  $req->hour],
         ])->get();
 
-        echo $var;
         $validate = Validator::make($req->all(), [
             'client' => ['required', 'string', 'max:255'],
             'reason' => ['required', 'string', 'max:255'],
@@ -35,6 +35,9 @@ class AppointmentController extends Controller
         //     return view('appointment')->withErrors($validate->errors());
         // }
         $this->addAppointment($req);
+        $validate->errors()->add('goodEntrie', 'Le rendez-vous a bien été envoyé !');
+        return view('appointment')->withErrors($validate->errors());
+        // return view('/appointment');
     }
 
     protected function addAppointment(Request $req)

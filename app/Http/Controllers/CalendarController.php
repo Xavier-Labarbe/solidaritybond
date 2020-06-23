@@ -12,7 +12,7 @@ class CalendarController extends Controller
 {
     public function calendar()
     {
-        $viewData = $this->loadViewData();
+        // $viewData = $this->loadViewData();
 
         // Get the access token from the cache
         $tokenCache = new TokenCache();
