@@ -107,43 +107,48 @@
                 </div>
                 </form>
                 @error('goodEntrie')
-                    <div class="alert alert-success goodentriealert" role="alert">
-                        {{ $errors->first('goodEntrie') }}
-                    </div>
+                <div class="alert alert-success goodentriealert" role="alert">
+                    {{ $errors->first('goodEntrie') }}
+                </div>
                 @enderror
             </div>
- 
-            {{--<div class="col-md-10">
+
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">Vos rendez-vous</div>
-                     @php
-  
-                $appointments = \DB::table('appointments')->where([['id_from',
-                '=',Auth::user()->id],['date','>=',]])get();
-                foreach ($appointments as $appointment) {
-                echo "<div class=\"modal\" tabindex=\"-1\" role=\"dialog\">
-                    <div class=\"modal-dialog\">
-                        <div class=\"modal-content\">
-                            <div class=\"modal-header\">
-                                <h5 class=\"modal-title\">Modal title</h5>
-                                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
-                                    <span aria-hidden=\"true\">&times;</span>
-                                </button>
-                            </div>
-                            <div class=\"modal-body\">
-                                <p>Modal body text goes here.</p>
-                            </div>
-                            <div class=\"modal-footer\">
-                                <button type=\"button\" class=\"btn btn-secondary\"
-                                    data-dismiss=\"modal\">Close</button>
-                                <button type=\"button\" class=\"btn btn-primary\">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>";
-                }
+                    <ul class="list-group">
+                        @php
 
-                @endphp --}}
+                        use Carbon\Carbon;
+                        $dt = Carbon::now();
+                        $dt->toDateString();
+
+                        $appointments =
+                        \DB::table('appointments')->join('users','appointments.to_id','=','users.id')->where('from_id','=',Auth::user()->id)
+                        ->orderBy('date')->whereDate('date','>=',$dt)->get();
+                        foreach ($appointments as $appointment) {
+
+                        echo
+                        "<li class=\"list-group-item\">
+                            <div>$appointment->date</div>
+                            <div class=\"card\" style=\"width: 25rem;\">
+                                <div class=\"card-body\">
+                                    <h5 class=\"card-title\">$appointment->first_name $appointment->name</h5>
+                                    <h6 class=\"card-subtitle mb-2 text-muted\">A $appointment->place , le
+                                        $appointment->date</h6>
+                                    <p class=\"card-text\">$appointment->context</p>
+                                    <a href=\"#\" class=\"card-link\">Modifier</a>
+                                    <a href=\"#\" class=\"card-link\">Détails</a>
+                                    <a href=\"#\" class=\"card-link\">Conversation</a>
+
+                                </div>
+                            </div>
+                        </li>";
+
+                        }
+
+                        @endphp
+                    </ul>
                 </div>
             </div>
         </div>
