@@ -105,7 +105,7 @@ export default new Vuex.Store({
             loadPreviousMessages: async function (context, conversationId) {
                 let message = context.getters.messages(conversationId)[0]
                 if (message) {
-                    let url = '/api/conversations/' + conversationId + '?before' + message.created_at
+                    let url = '/api/conversations/' + conversationId + '?before=' + message.created_at
                     let response = await fetchApi(url)
                     context.commit('prependMessages', {id: conversationId, messages: response.messages})
                 }
