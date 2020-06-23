@@ -43,7 +43,7 @@ class AppointmentController extends Controller
     protected function addAppointment(Request $req)
     {
         \DB::table('appointments')->insert(
-            ['from_id' => Auth::user()->id, 'to_id' => $req->client, 'context' => $req->reason, 'place' => $req->place, 'date' => $req->date, 'hour' => $req->hour, 'duration' => $req->duration]
+            ['from_id' => Auth::user()->id, 'to_id' => $req->client, 'context' => $req->reason, 'place' => $req->place, 'date' => $req->date, 'hour' => $req->hour, 'duration' => $req->duration, 'status' => "1"]
         );
     }
 }
