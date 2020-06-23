@@ -16,6 +16,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "league/oauth2-client": "^2.4",
         "microsoft/microsoft-graph": "^1.13"
     },
     "require-dev": {
@@ -46,8 +47,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/",
-            "oauth2-client\\": "app/lib"
+            "Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",

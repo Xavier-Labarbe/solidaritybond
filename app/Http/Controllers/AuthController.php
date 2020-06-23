@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Microsoft\Graph\Graph;
 use Microsoft\Graph\Model;
+use App\TokenStore\TokenCache;
 
 class AuthController extends Controller
 {
@@ -29,6 +30,13 @@ class AuthController extends Controller
 
         // Redirect to AAD signin page
         return redirect()->away($authUrl);
+    }
+
+    public function signout()
+    {
+        $tokenCache = new TokenCache();
+        $tokenCache->clearTokens();
+        return redirect('/');
     }
 
     public function callback(Request $request)
@@ -78,10 +86,10 @@ class AuthController extends Controller
                     ->setReturnType(Model\User::class)
                     ->execute();
 
-                // TEMPORARY FOR TESTING!
-                return redirect('/')
-                    ->with('error', 'Access token received')
-                    ->with('errorDetail', 'User:' . $user->getDisplayName() . ', Token:' . $accessToken->getToken());
+                $tokenCache = new TokenCache();
+                $tokenCache->storeTokens($accessToken, $user);
+
+                return redirect('/');
             } catch (League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
                 return redirect('/')
                     ->with('error', 'Error requesting access token')

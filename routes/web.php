@@ -70,3 +70,4 @@ Route::post('/appointment', 'AppointmentController@index')->name('appointment');
 
 Route::get('/signin', 'AuthController@signin');
 Route::get('/callback', 'AuthController@callback');
+Route::get('/signout', 'AuthController@signout');
