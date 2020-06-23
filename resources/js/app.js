@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Messagerie from "./components/MessagerieComponent";
 import store from './store/store'
 import MessagesComponent from "./components/MessagesComponent";
+window.io = require('socket.io-client')
 
 Vue.use(VueRouter)
 

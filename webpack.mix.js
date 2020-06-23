@@ -20,7 +20,7 @@ mix.js('resources/js/app.js', 'public/js')
         plugins: [
             new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /fr/),
             new BundleAnalyzerPlugin({
-                open: false
+                openAnalyzer: false
             })
         ]
     });

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Api;
 
+use App\Events\NewMessage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMessageRequest;
 use App\Repository\ConversationRepository;
@@ -54,6 +55,7 @@ class ConversationsController extends Controller {
             $request->user()->id,
             $user->id
         );
+        broadcast(new NewMessage($message));
         return [
             'message' => $message
         ];

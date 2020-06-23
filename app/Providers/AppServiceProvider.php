@@ -26,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($this->app->environment() === 'local') {
+            if (isset($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI'])) {
+                file_put_contents('php://stdout',
+                "\e[33mHTTP::{$_SERVER['REQUEST_METHOD']} \e[0m{$_SERVER['REQUEST_URI']}\n");
+            }
+        }
     }
 }

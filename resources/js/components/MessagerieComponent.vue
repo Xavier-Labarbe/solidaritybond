@@ -19,6 +19,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    window.io = require('socket.io-client')
     export default {
         props: {
             user: Number,
@@ -28,7 +29,7 @@
         },
         mounted() {
             this.$store.dispatch('loadConversations')
-            this.$store.commit('setUser', this.user )
+            this.$store.dispatch('setUser', this.user )
         }
     }
 </script>

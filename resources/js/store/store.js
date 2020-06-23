@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Echo from "laravel-echo";
 
 Vue.use(Vuex)
 
@@ -109,6 +110,18 @@ export default new Vuex.Store({
                     let response = await fetchApi(url)
                     context.commit('prependMessages', {id: conversationId, messages: response.messages})
                 }
+            },
+            setUser: function (context, userId) {
+                context.commit('setUser', userId)
+                let echo = new Echo({
+                    broadcaster: 'socket.io',
+                    host: window.location.hostname + ':6001'
+                })
+
+                echo.private(`App.User.${userId}`)
+                    .listen('NewMessage', function (e) {
+                        context.commit('addMessage', {message: e.message, id: e.message.from_id})
+                    })
             }
         }
 
