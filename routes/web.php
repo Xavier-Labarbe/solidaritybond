@@ -40,6 +40,7 @@ Route::get('/contact', function () {
 Route::get('/calendar', function () {
     return view('calendar');
 });
+Route::get('/outlookCalendar', 'CalendarController@calendar');
 
 Route::post('/calendar', function () {
     $link = request('link');
