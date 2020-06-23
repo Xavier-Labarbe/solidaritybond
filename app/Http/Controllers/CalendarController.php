@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Microsoft\Graph\Graph;
 use Microsoft\Graph\Model;
 use App\TokenStore\TokenCache;
@@ -12,7 +11,7 @@ class CalendarController extends Controller
 {
     public function calendar()
     {
-        // $viewData = $this->loadViewData();
+        $viewData = $this->loadViewData();
 
         // Get the access token from the cache
         $tokenCache = new TokenCache();
@@ -33,7 +32,8 @@ class CalendarController extends Controller
         $events = $graph->createRequest('GET', $getEventsUrl)
             ->setReturnType(Model\Event::class)
             ->execute();
+
         $viewData['events'] = $events;
-        return view('calendar', $viewData);
+        return view('outlookCalendar', $viewData);
     }
 }

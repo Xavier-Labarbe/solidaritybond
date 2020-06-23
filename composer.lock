@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7dfa72dbdfe3e381acb3eb4fabc8e971",
+    "content-hash": "f72d97a77909c0efdaf8fd33639077b7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -103,6 +103,64 @@
                 "math"
             ],
             "time": "2020-04-15T15:59:35+00:00"
+        },
+        {
+            "name": "dcblogdev/laravel-microsoft-graph",
+            "version": "v3.02",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dcblogdev/laravel-microsoft-graph.git",
+                "reference": "34e50ed9ba472adcdc72962f278ad8b5ecc98733"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dcblogdev/laravel-microsoft-graph/zipball/34e50ed9ba472adcdc72962f278ad8b5ecc98733",
+                "reference": "34e50ed9ba472adcdc72962f278ad8b5ecc98733",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6",
+                "illuminate/support": "5.5.x|5.6.x|5.7.x|5.8.x|6.x|7.x",
+                "league/oauth2-client": "^1.4|^2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dcblogdev\\MsGraph\\MsGraphServiceProvider"
+                    ],
+                    "aliases": {
+                        "MsGraph": "Dcblogdev\\MsGraph\\Facades\\MsGraph",
+                        "MsGraphAdmin": "Dcblogdev\\MsGraph\\Facades\\MsGraphAdmin"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dcblogdev\\MsGraph\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Carr",
+                    "email": "dave@dcblog.dev",
+                    "homepage": "https://dcblog.dev"
+                }
+            ],
+            "description": "A Laravel Microsoft Graph API (Office365) package",
+            "homepage": "https://github.com/dcblogdev/laravel-microsoft-graph",
+            "keywords": [
+                "Microsoft graph",
+                "MsGraph",
+                "Office365",
+                "graph",
+                "laravel"
+            ],
+            "time": "2020-06-17T09:44:17+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1472,6 +1530,51 @@
                 "single sign on"
             ],
             "time": "2018-11-22T18:33:57+00:00"
+        },
+        {
+            "name": "microsoft/microsoft-graph",
+            "version": "1.13.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/microsoftgraph/msgraph-sdk-php.git",
+                "reference": "584b71bf888659596003d9c8acab06161def8ae5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/microsoftgraph/msgraph-sdk-php/zipball/584b71bf888659596003d9c8acab06161def8ae5",
+                "reference": "584b71bf888659596003d9c8acab06161def8ae5",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.2",
+                "phpdocumentor/phpdocumentor": "^2.9",
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Microsoft\\Graph\\": "src/",
+                    "Microsoft\\Graph\\Test\\": "tests/Functional/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Mainer",
+                    "email": "mmainer@microsoft.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Microsoft Graph SDK for PHP",
+            "homepage": "https://developer.microsoft.com/en-us/graph",
+            "time": "2020-02-04T23:16:38+00:00"
         },
         {
             "name": "monolog/monolog",

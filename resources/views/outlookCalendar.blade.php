@@ -1,6 +1,6 @@
-@extends('layouts.main')
+@extends('layout')
 
-@section('main')
+@section('content')
 <h1>Calendar</h1>
 <table class="table">
     <thead>
