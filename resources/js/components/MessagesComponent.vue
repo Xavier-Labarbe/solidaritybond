@@ -40,6 +40,9 @@
             },
             count: function () {
                 return this.$store.getters.conversation(this.$route.params.id).count
+            },
+            lastMessage: function () {
+                return this.messages[this.messages.length -1]
             }
         },
         mounted() {
@@ -49,12 +52,14 @@
         watch: {
             '$route.params.id': function () {
                 this.loadMessages()
+            },
+            lastMessage: function () {
+                this.scrollBot()
             }
         },
         methods: {
             async loadMessages () {
                 let response = await this.$store.dispatch('loadMessages', this.$route.params.id)
-                this.scrollBot()
                 if (this.messages.length < this.count) {
                     this.$messages.addEventListener('scroll', this.onScroll)
                 }
@@ -90,7 +95,6 @@
                             userId: this.$route.params.id
                         })
                         this.content = ''
-                        this.scrollBot()
                     } catch (e) {
                         if (e.errors) {
                             this.errors = e.errors
