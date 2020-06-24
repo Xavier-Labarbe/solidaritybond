@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Appointment;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
