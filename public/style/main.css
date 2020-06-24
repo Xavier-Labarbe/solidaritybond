@@ -13,9 +13,9 @@ body {
     background-repeat: repeat-y;
     background-size: cover;
 }
-body:first-of-type {
+/* body:first-of-type {
     font-family: "Raleway", sans-serif !important;
-}
+} */
 
 #container {
     min-height: 100%;
@@ -36,6 +36,11 @@ body:first-of-type {
     justify-content: space-around;
     align-items: center;
     padding-left: 1em;
+}
+
+.footercard {
+    background-color: rgba(0, 0, 0, 0.185) !important;
+    padding: 0% !important;
 }
 
 .legal {

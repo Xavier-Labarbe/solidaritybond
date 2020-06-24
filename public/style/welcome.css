@@ -46,7 +46,7 @@
     color: white;
 } */
 
-.card {
+.welcomeCard {
     margin-top: 25px;
     font-size: 21px;
     text-align: center;
@@ -55,7 +55,7 @@
     -webkit-animation: fadein 2s; /* Safari and Chrome */
     -o-animation: fadein 2s; /* Opera */
     background-color: rgba(0, 0, 0, 0.3) !important;
-    color: white;
+    color: white !important ;
 }
 
 .welcomeTitle {
@@ -74,6 +74,14 @@
     font-weight: 200;
     font-style: normal;
     font-size: 1.25rem;
+}
+
+.welcomeImage {
+    transition: all 0.2s ease-in-out;
+}
+
+.welcomeImage:hover {
+    transform: scale(1.1);
 }
 
 @keyframes fadein {

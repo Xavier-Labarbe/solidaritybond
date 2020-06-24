@@ -2,31 +2,44 @@
 
 @section('main')
 
-<div class="card corp">
+<div class="welcomeCard  corp">
   <h5 class="welcomeTitle card-header">Nos services</h5>
   <div class="row no-gutters">
     <div class="col-md-4 column">
       <div class="card-body">
         <h5 class="welcommeTitle_small card-title">Vous nous conctactez</h5>
-        <a href="conversations"><img src="image/contact.jpg"></a>
+        <div class="welcomeImage">
+
+          <a class="welcomeImage" href="conversations"><img src="image/contact.jpg"></a>
+        </div>
       </div>
+
     </div>
     <div class="col-md-4 column">
       <div class="card-body">
         <h5 class="welcommeTitle_small card-title">Vous prototypez</h5>
-        <a href="conversation"><img src="image/prototypage.png"></a>
+        <div class="welcomeImage">
+
+          <a class="welcomeImage" href="conversations"><img src="image/prototypage.png"></a>
+        </div>
       </div>
+
     </div>
     <div class="col-md-4 column">
       <div class="card-body">
         <h5 class="welcommeTitle_small card-title">Vous produisez</h5>
-        <a href="appointment"><img style="	filter: invert(100%);" src="image/imprimante.png"></a>
+        <div class="welcomeImage">
+          <a href="appointment">
+            <img style="	filter: invert(100%);" src="image/imprimante.png">
+          </a>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
 
-<div class="card mb-3 corp">
+<div class="welcomeCard mb-3 corp">
   <div class="row no-gutters">
     <div class="col-md-8 secondcardbody">
       <div class="card-body">

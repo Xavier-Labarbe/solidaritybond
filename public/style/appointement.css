@@ -16,38 +16,90 @@
 .acceptAppointment_button {
     -webkit-appearance: none;
     -webkit-writing-mode: horizontal-tb !important;
-    text-rendering: auto;
     color: grey;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    text-align: center;
-    align-items: flex-start;
-    cursor: default;
     background-color: transparent;
-    box-sizing: border-box;
-    margin: 0em;
-    font: 400 13.3333px Arial;
-    padding: 1px 6px;
-    border-width: 2px;
-    border-style: outset;
     border-color: transparent;
     border-image: initial;
-    font-size: 3em;
+    font-size: 2.5em;
+    transition: 0.5s ease;
+    backface-visibility: hidden;
+}
+.denyAppointment_button {
+    -webkit-appearance: none;
+    -webkit-writing-mode: horizontal-tb !important;
+    color: grey;
+    background-color: transparent;
+    border-color: transparent;
+    border-image: initial;
+    font-size: 2.5em;
     transition: 0.5s ease;
     backface-visibility: hidden;
 }
 
-.appointmentButton__accept:hover {
-    transition: 0.5s ease;
+.apointmentCard {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color: white !important ;
+}
+.apointmentCardLight {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    background-color: rgba(255, 255, 255, 0.849) !important;
+    color: black !important ;
+}
 
+.acceptAppointment_button :hover {
+    transition: 0.5s ease;
     color: green;
 }
 
-.appointmentButton__deny:hover {
+.denyAppointment_button:hover {
     transition: 0.5s ease;
+    color: rgb(204, 17, 17);
+}
 
-    color: red;
+.appointmentText {
+    font-family: "Raleway", sans-serif;
+    font-size: 1.4rem;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-moz-keyframes fadein {
+    /* Firefox */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadein {
+    /* Safari and Chrome */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-o-keyframes fadein {
+    /* Opera */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

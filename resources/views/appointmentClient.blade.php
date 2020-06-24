@@ -8,8 +8,8 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div style="padding-bottom:3rem">
-                <div class="card">
-                    <div class="card-header">Vos propositions de rendez-vous</div>
+                <div class="apointmentCard">
+                    <div class="card-header appointmentText">Vos propositions de rendez-vous</div>
                     <div> @php
                         use Carbon\Carbon;
                         $dt = Carbon::now();
@@ -32,9 +32,9 @@
                         }
 
                         echo
-                        "<li class=\"list-group-item\">
-                            <div class=\"calendar_container\">
-                                <div style=\"text-align-last: center;width: 27rem;\">
+                        "<li class=\"apointmentCard list-group-item\">
+                            <div class=\" calendar_container\">
+                                <div class=\"appointmentText\" style=\"text-align-last: center;width: 27rem;\">
                                     <h4 style=\"margin-bottom: 0\">$newDate</h4>
                                 </div>
                                 <div style=\"width:12rem;margin-right:1rem;display:flex;align-items:baseline\">
@@ -45,7 +45,7 @@
 
                                 </div>
 
-                                <div class=\" card\" style=\"width: 45rem;\">
+                                <div class=\"apointmentCardLight\" style=\"width: 45rem;\">
                                     <div class=\"card-body\" style=\"display: flex; align-items: center;
                                         justify-content: space-between;\">
                                         <div>
@@ -58,12 +58,14 @@
                                             <a href=\"conversations/$appointment->to_id\"
                                                 class=\"card-link\">Conversation</a>
                                         </div>
-                                        <form method=\"POST\" action=\"appointmentClient\">
-
+                                        <form method=\"POST\" action=\"appointmentClient\" style=\"display:flex\">
                                             <input style=\"display:none\" name=\"appointment_id\"
                                                 value=". \DB::table('appointments')->where('place',$appointment->place)->whereDate('date','=',$appointment->date)->whereDate('hour','=',$appointment->hour)->get() ." />
                                             <button class=\"acceptAppointment_button \">
-                                                <div class=\"appointmentButton far fa-calendar-check \"></div>
+                                                <div class=\" far fa-calendar-check \"></div>
+                                            </button>
+                                            <button class=\"denyAppointment_button \">
+                                                <div class=\" fas fa-times \"></div>
                                             </button>
                                         </form>
 
@@ -81,8 +83,8 @@
             </div>
 
             <div>
-                <div class="card">
-                    <div class="card-header">Vos évènements à venir</div>
+                <div class="apointmentCard">
+                    <div class="card-header appointmentText">Vos évènements à venir</div>
                     <div> @php
                         $dt = Carbon::now();
                         $dt->toDateString();
@@ -104,7 +106,7 @@
                         }
 
                         echo
-                        "<li class=\"list-group-item\">
+                        "<li class=\"apointmentCard list-group-item\">
                             <div class=\"calendar_container\">
                                 <div style=\"text-align-last: center;width: 27rem;\">
                                     <h4 style=\"margin-bottom: 0\">$newDate</h4>
@@ -117,7 +119,7 @@
 
                                 </div>
 
-                                <div class=\" card\" style=\"width: 45rem;\">
+                                <div class=\"apointmentCardLight\" style=\"width: 45rem;\">
                                     <div class=\"card-body\" style=\"display: flex; align-items: center;
                                         justify-content: space-between;\">
                                         <div>

@@ -1,12 +1,12 @@
-<div class="card">
+<div class="footercard">
     <div style="padding:0%" class="card-body footer_container">
 
         <a href="/"><img src="image/logo_fablab.png" width="50px" /></a>
 
         <div>
-            <i class="fab fa-facebook fa-2x "></i>
-            <i class="fab fa-twitter fa-2x"></i>
-            <i class="fab fa-linkedin-in fa-2x"></i>
+            <i style="  filter: invert(1);" class="fab fa-facebook fa-2x "></i>
+            <i style="  filter: invert(1);" class="fab fa-twitter fa-2x"></i>
+            <i style="  filter: invert(1);" class="fab fa-linkedin-in fa-2x"></i>
         </div>
         <div>
             <p style="text-align: center;margin-bottom:0%" class="footerText">Nos sponsors</p>
