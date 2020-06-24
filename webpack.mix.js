@@ -11,5 +11,16 @@ const mix = require('laravel-mix');
  |
  */
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const webpack = require('webpack')
+
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .webpackConfig({
+        plugins: [
+            new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /fr/),
+            new BundleAnalyzerPlugin({
+                openAnalyzer: false
+            })
+        ]
+    });

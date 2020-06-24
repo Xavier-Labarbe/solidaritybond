@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /.idea
+=======
+>>>>>>> origin/chatv1
 /node_modules
 /public/hot
 /public/storage
@@ -11,4 +14,8 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+<<<<<<< HEAD
 database/seeds/DatabaseSeeder.php
+=======
+/.idea/
+>>>>>>> origin/chatv1

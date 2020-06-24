@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMessageRequest;
-use App\Notifications\MessageReceived;
 use App\Repository\ConversationRepository;
 use App\User;
 use Illuminate\Auth\AuthManager;
@@ -12,59 +11,51 @@ use Illuminate\Support\Facades\Auth;
 
 class ConversationsController extends Controller
 {
-
     /**
      * @var ConversationRepository
      */
-    private $conversationRepository;
+    private $r;
+
     /**
      * @var AuthManager
      */
-    private $authManager;
+    private $auth;
 
-    public function __construct(ConversationRepository $conversationRepository, AuthManager $authManager)
+    public function __construct(ConversationRepository $conversationRepository, AuthManager $auth)
     {
-        $this->middleware('auth');
-        $this->conversationRepository = $conversationRepository;
-        $this->authManager = $authManager;
+        $this->r = $conversationRepository;
+        $this->auth = $auth;
     }
 
-    public function index ()
+    public function index()
     {
-        return view('conversations/index', [
-            'users' => $this->conversationRepository->getConversations($this->authManager->user()->id),
-            'unread' => $this->conversationRepository->unreadCount($this->authManager->user()->id)
-        ]);
+        return view('conversations/index');
     }
 
-    public function show (User $user)
+    public function show(User $user)
     {
-        $me = $this->authManager->user();
-        $messages = $this->conversationRepository->getMessagesFor($me->id, $user->id)->paginate(6);
-        $unread = $this->conversationRepository->unreadCount($me->id);
-        if (isset($unread[$user->id]))
-        {
-            $this->conversationRepository->readAllFrom($user->id, $me->id);
+        $me = $this->auth->user();
+        $message = $this->r->getMessagesFor($me->id, $user->id)->paginate(50);
+        $unread = $this->r->unreadCount($me->id);
+        if (isset($unread[$user->id])) {
+            $this->r->readAllFrom($user->id, $me->id);
             unset($unread[$user->id]);
-;        }
-        return view('conversations/show', [
-            'users' => $this->conversationRepository->getConversations($me->id),
+        }
+        return view('conversations.show', [
+            'users' => $this->r->getConversations($this->auth->user()->id),
             'user' => $user,
-            'messages' => $messages,
-            'unread' => $unread
-
+            'messages' => $message,
+            'unread' => $this->r->unreadCount($this->auth->user()->id)
         ]);
     }
 
-    public function store (User $user, StoreMessageRequest $request)
+    public function store(User $user, StoreMessageRequest $request)
     {
-        $message = $this->conversationRepository->createMessage(
+        $this->r->createMessage(
             $request->get('content'),
-            $this->authManager->user()->id,
+            $this->auth->user()->id,
             $user->id
         );
-        //$user->notify(new MessageReceived($message));
         return redirect(route('conversations.show', ['user' => $user->id]));
     }
-
-    }
+}
