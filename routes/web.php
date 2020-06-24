@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,13 +63,6 @@ Auth::routes();
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home', 'ConversationsController@index')->name('home');
-Route::get('/conversations', 'ConversationsController@index')->name('conversations');
-Route::get('/conversations/{user}', 'ConversationsController@show')
-    ->middleware('can:talkTo,user')
-    ->name('conversations.show');
-Route::post('/conversations/{user}', 'ConversationsController@store')
-    ->middleware('can:talkTo,user');
 
 Route::post('/account', 'AccountController@index')->name('account');
 
@@ -78,3 +70,6 @@ Route::post('/account', 'AccountController@index')->name('account');
 // Route::get('/callback', 'AuthController@callback');
 // Route::get('/signout', 'AuthController@signout');
 // Route::get('/calendar', 'CalendarController@calendar');
+
+Route::get('/conversations', 'ConversationsController@index')->name('conversations');
+Route::get('/conversations/{user}', 'ConversationsController@index');
