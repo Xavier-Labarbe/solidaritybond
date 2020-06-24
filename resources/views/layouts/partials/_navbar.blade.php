@@ -11,8 +11,8 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="appointment">Espace de rendez-vous <span
           class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="conversations">Mise en relation</a>
-      <a class="nav-item nav-link" href="calendar">Calendrier</a>
+      <a class="nav-item nav-link active" href="conversations">Mise en relation</a>
+      <a class="nav-item nav-link active" href="calendar">Calendrier</a>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">

@@ -130,20 +130,35 @@
                         $newDate = date("jS F, Y", strtotime($originalDate));
                         // $newDate = date("d-m-Y", strtotime($originalDate));
                         $newDuration = date("H\hi",strtotime($appointment->duration));
+
+
+                        if($appointment->status='1'){
+                        $status = "<i class=\"fas fa-hourglass-half\"></i>";
+                        }if($appointment->status='0'){
+                        $status ="<i class=\"fas fa-check\"></i>";
+                        }
+
                         echo
                         "<li class=\"list-group-item\">
                             <div class=\"calendar_container\">
-                                <div style=\"width: 27rem;\">
-                                    <h4>$newDate</h4>
+                                <div style=\"text-align-last: center;width: 27rem;\">
+                                    <h4 style=\"margin-bottom: 0\">$newDate</h4>
                                 </div>
-                                <div style=\"width:12rem;margin-right:1rem\" class=\"calendar_container\">
-                                    <h4 style=\"margin-right:1rem\">".date("H\hi",strtotime($appointment->hour))."</h4>
-                                    <h6>$newDuration</h6>
+                                <div style=\"width:12rem;margin-right:1rem;display:flex;align-items:baseline\">
+                                    <h4 style=\"margin-right:1rem;margin-bottom: 0\">
+                                        ".date("H\hi",strtotime($appointment->hour))."</h4>
+                                    <i class=\"fas fa-business-time\"></i>
+                                    <h6 style=\"margin-bottom: 0;margin-left:0.5rem\">$newDuration</h6>
+
                                 </div>
 
                                 <div class=\" card\" style=\"width: 45rem;\">
                                     <div class=\"card-body\">
-                                        <h5 class=\"card-title\">$appointment->first_name $appointment->name</h5>
+                                        <div style=\" display: flex; align-items: baseline; justify-content:
+                                            space-between;\">
+                                            <h5 class=\"card-title\">$appointment->first_name $appointment->name</h5>
+                                            $status
+                                        </div>
                                         <h6 class=\"card-subtitle mb-2 text-muted\">$appointment->place , le
                                             $newDate</h6>
                                         <p class=\"card-text\">$appointment->context</p>
