@@ -26,14 +26,16 @@ Route::get('/appointment', function () {
         return view('appointment');
     }
 });
+Route::post('/appointmentClient', 'AppointmentClientController@index')->name('appointmentClient');
+Route::post('/appointment', 'AppointmentController@index')->name('appointment');
 
-Route::post('/appointment', function () {
-    if (Auth::user()->status == 1) {
-        Route::post('/appointmentClient', 'AppointmentClientController@index')->name('appointmentClient');
-    } else {
-        Route::post('/appointment', 'AppointmentController@index')->name('appointment');
-    }
-});
+
+
+// Route::post('/appointment', function () {
+//     if (Auth::user()->status == 1) {
+//     } else {
+//     }
+// });
 
 
 Route::get('/legalNotice', function () {
