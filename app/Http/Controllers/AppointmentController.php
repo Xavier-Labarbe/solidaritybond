@@ -50,8 +50,7 @@ class AppointmentController extends Controller
 
         $this->addAppointment($req);
         $validate->errors()->add('goodEntrie', 'Le rendez-vous a bien été envoyé !');
-        view('appointment')->withErrors($validate->errors());
-        return redirect('appointment');
+        return view('appointmentFablab')->withErrors($validate->errors());
     }
 
     protected function addAppointment(Request $req)
