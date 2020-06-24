@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\AppointmentClientController;
-use app\Http\Controllers\AppointmentController;
-use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -23,13 +20,7 @@ Route::get('/', function () {
 
 Route::get('/account', 'DiagramController@index');
 
-Route::get('/appointment', function () {
-    if (Auth::user()->status = '1') {
-        return view('appointmentClient');
-    } else {
-        return view('appointment');
-    }
-});
+Route::get('/appointment', 'AppointmentController@choose');
 
 Route::post('/appointment', 'AppointmentController@index');
 

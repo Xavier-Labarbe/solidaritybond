@@ -7,11 +7,17 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 
+
 class AppointmentController extends Controller
 {
 
     public function choose()
     {
+        if (Auth::user()->status == 1) {
+            return view('appointmentClient');
+        } else {
+            return view('appointment');
+        }
     }
 
 
