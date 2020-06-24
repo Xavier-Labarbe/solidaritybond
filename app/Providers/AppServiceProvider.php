@@ -23,12 +23,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+
         if ($this->app->environment() === 'local')
         {
             DB::listen(function (QueryExecuted $query)
             {
                 file_put_contents('php://stdout', "\e[34m{$query->sql}\t\e[37m" . json_encode($query->bindings) . "\t\e[32m{$query->time}ms\e[0m\n");
             });
+
         if ($this->app->environment() === 'local') {
             if (isset($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI'])) {
                 file_put_contents('php://stdout',
@@ -36,4 +38,4 @@ class AppServiceProvider extends ServiceProvider
             }
         }
     }
-}
+}};
