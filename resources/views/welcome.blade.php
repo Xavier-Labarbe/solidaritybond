@@ -19,7 +19,7 @@
     </div>
     <div class="col-md-4 column">
       <div class="card-body">
-        <h5 class="card-title">Nous imprimons</h5>
+        <h5 class="card-title">Vous produisez</h5>
         <img src="image/imprimante.png">
       </div>
     </div>
