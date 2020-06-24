@@ -18,7 +18,7 @@
 
 .firstcardbody {
     float: left;
-    margin-right:15px;
+    margin-right: 15px;
 }
 
 .description {
@@ -32,4 +32,82 @@
 
 .column {
     text-align: center;
+}
+
+.card-header {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    animation: auto;
+    font-size: x-large;
+}
+
+/* .card {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color: white;
+} */
+
+.card {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color: white;
+}
+
+.welcomeTitle {
+    font-family: "Raleway", sans-serif;
+    font-size: 1.75rem;
+    letter-spacing: 0.1em;
+}
+.welcommeTitle_small {
+    font-family: "Raleway", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    padding-bottom: 0.6rem;
+}
+.welcomeDescription {
+    font-family: "Raleway", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 1.25rem;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-moz-keyframes fadein {
+    /* Firefox */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadein {
+    /* Safari and Chrome */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-o-keyframes fadein {
+    /* Opera */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

@@ -16,6 +16,8 @@
 <link href="/style/calendar.css" rel="stylesheet">
 <link href="/style/account.css" rel="stylesheet">
 <link href="/style/appointement.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400&display=swap" rel="stylesheet">
 
 
 

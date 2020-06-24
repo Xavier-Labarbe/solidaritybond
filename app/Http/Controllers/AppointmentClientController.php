@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 
-class AppointmentController extends Controller
+class AppointmentClientController extends Controller
 {
     public function index(Request $req)
     {
@@ -17,7 +17,7 @@ class AppointmentController extends Controller
 
     protected function validator(Request $req)
     {
-        echo "coucou";
+        echo "E";
         // \DB::table('appointments')->where('id', $req->appointment_id)->update(['status' => 0]);
         // return redirect('appointment');
     }

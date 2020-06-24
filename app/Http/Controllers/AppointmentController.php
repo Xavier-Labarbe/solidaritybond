@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class AppointmentController extends Controller
 {
+
+    public function choose()
+    {
+    }
+
+
     public function index(Request $req)
     {
         return $this->validator($req);

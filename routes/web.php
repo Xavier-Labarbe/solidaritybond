@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers\AppointmentClientController;
+use app\Http\Controllers\AppointmentController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,22 +24,27 @@ Route::get('/', function () {
 Route::get('/account', 'DiagramController@index');
 
 Route::get('/appointment', function () {
-    if (Auth::user()->status == 1) {
+    if (Auth::user()->status = '1') {
         return view('appointmentClient');
     } else {
         return view('appointment');
     }
 });
-Route::post('/appointmentClient', 'AppointmentClientController@index')->name('appointmentClient');
-Route::post('/appointment', 'AppointmentController@index')->name('appointment');
+
+Route::post('/appointment', 'AppointmentController@index');
+
+Route::post('/appointmentClient', 'AppointmentClientController@index');
 
 
 
-// Route::post('/appointment', function () {
+
+// Route::post('/appointment', function ($req) {
 //     if (Auth::user()->status == 1) {
+//         return AppointmentClientController::index($req);
 //     } else {
+//         return AppointmentController::index($req);
 //     }
-// });
+// })->name('appointment');
 
 
 Route::get('/legalNotice', function () {

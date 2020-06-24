@@ -40,8 +40,14 @@
     backface-visibility: hidden;
 }
 
-.appointmentButton:hover {
+.appointmentButton__accept:hover {
     transition: 0.5s ease;
 
     color: green;
+}
+
+.appointmentButton__deny:hover {
+    transition: 0.5s ease;
+
+    color: red;
 }
