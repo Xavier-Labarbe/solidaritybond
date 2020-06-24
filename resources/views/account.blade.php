@@ -96,21 +96,82 @@
             <form class="form-inline" method="POST" action="{{  route('account') }}">
                 @csrf
                 <div class="form-group mx-sm-3 mb-2">
-                    <label>Quantité de plastique restante en mètre : </label>
+                    <input name="material" type="hidden" value="1">
+                    <label>Quantité de plastique restante : </label>
                     @php 
+                    $var = 0;
                     $id = \DB::table('material')->where('material', '1')->max('id');
                     $plastics = \DB::table('material')->where('id', $id)->get();
                     foreach ($plastics as $plastic) {
                         $var = $plastic->amount;
                     }
                     @endphp
-                    <input name="plastic" type="number" class="form-control" required value="{{  $var }}">
+                    <input name="amount" type="number" class="form-control" required value="{{  $var }}">
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">Confirmer</button>
             </form>
             <div id="PlasticAmount-div"></div>
                 {!! \Lava::render('AreaChart', 'PlasticAmount', 'PlasticAmount-div') !!}
-            </div>
+
+            <form class="form-inline" method="POST" action="{{  route('account') }}">
+                @csrf
+                <div class="form-group mx-sm-3 mb-2">
+                    <input name="material" type="hidden" value="2">
+                    <label>Quantité de papier carton restante : </label>
+                    @php 
+                    $var2 = 0;
+                    $id = \DB::table('material')->where('material', '2')->max('id');
+                    $papers = \DB::table('material')->where('id', $id)->get();
+                    foreach ($papers as $paper) {
+                        $var2 = $paper->amount;
+                    }
+                    @endphp
+                    <input name="amount" type="number" class="form-control" required value="{{  $var2 }}">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Confirmer</button>
+            </form>
+            <div id="PaperAmount-div"></div>
+                {!! \Lava::render('AreaChart', 'PaperAmount', 'PaperAmount-div') !!}
+
+            <form class="form-inline" method="POST" action="{{  route('account') }}">
+                @csrf
+                <div class="form-group mx-sm-3 mb-2">
+                    <input name="material" type="hidden" value="3">
+                    <label>Quantité de plexyglass restante : </label>
+                    @php 
+                    $var3 = 0;
+                    $id = \DB::table('material')->where('material', '3')->max('id');
+                    $plexyglasss = \DB::table('material')->where('id', $id)->get();
+                    foreach ($plexyglasss as $plexyglass) {
+                        $var3 = $plexyglass->amount;
+                    }
+                    @endphp
+                    <input name="amount" type="number" class="form-control" required value="{{  $var3 }}">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Confirmer</button>
+            </form>
+            <div id="PlexyglassAmount-div"></div>
+                {!! \Lava::render('AreaChart', 'PlexyglassAmount', 'PlexyglassAmount-div') !!}
+
+            <form class="form-inline" method="POST" action="{{  route('account') }}">
+                @csrf
+                <div class="form-group mx-sm-3 mb-2">
+                    <input name="material" type="hidden" value="4">
+                    <label>Quantité de MDF restante : </label>
+                    @php 
+                    $var4 = 0;
+                    $id = \DB::table('material')->where('material', '4')->max('id');
+                    $MDFs = \DB::table('material')->where('id', $id)->get();
+                    foreach ($MDFs as $MDF) {
+                        $var4 = $MDF->amount;
+                    }
+                    @endphp
+                    <input name="amount" type="number" class="form-control" required value="{{  $var4 }}">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Confirmer</button>
+            </form>
+            <div id="MDFAmount-div"></div>
+                {!! \Lava::render('AreaChart', 'MDFAmount', 'MDFAmount-div') !!}
 
 
         <div id="apointementstates-div"></div>

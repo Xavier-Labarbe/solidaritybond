@@ -16,10 +16,10 @@ class AccountController extends Controller
 {
     public function index (Request $req)
     {
-        if ($req->plastic == null){
-            return $this->validator($req);
+        if ($req->material != null){
+            return $this->board($req);
         }else{
-            return $this->plastic($req);
+            return $this->validator($req);
         }
     }
 
@@ -59,9 +59,9 @@ class AccountController extends Controller
         }
     }
 
-    public function plastic (Request $req){
+    public function board (Request $req){
         \DB::table('material')->insert(
-            ['material' => "1", 'amount' => $req->plastic]
+            ['material' => $req->material, 'amount' => $req->amount]
         );
         return back();
     }

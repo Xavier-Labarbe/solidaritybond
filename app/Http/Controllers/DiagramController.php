@@ -32,7 +32,7 @@ class DiagramController extends Controller
         $plasticAmount = \Lava::DataTable();
 
         $plasticAmount->addNumberColumn('temps')
-            ->addNumberColumn('quantité de plastic');
+            ->addNumberColumn('quantité de plastique');
             
             foreach ($plastics as $plastic) {
                 $i++;
@@ -41,6 +41,66 @@ class DiagramController extends Controller
 
             \Lava::AreaChart('PlasticAmount', $plasticAmount, [
             'title' => 'quantité de plastique',
+            'legend' => [
+                'position' => 'in'
+            ]
+        ]);
+
+        $papers = \DB::table('material')->where('material', '2')->get();
+        $i = 0;
+
+        $paperAmount = \Lava::DataTable();
+
+        $paperAmount->addNumberColumn('temps')
+            ->addNumberColumn('quantité de papier carton');
+            
+            foreach ($papers as $paper) {
+                $i++;
+                $paperAmount->addRow([$i, $paper->amount]);
+            }
+
+            \Lava::AreaChart('PaperAmount', $paperAmount, [
+            'title' => 'quantité de papier carton',
+            'legend' => [
+                'position' => 'in'
+            ]
+        ]);
+
+        $plexyglasss = \DB::table('material')->where('material', '3')->get();
+        $i = 0;
+
+        $plexyglassAmount = \Lava::DataTable();
+
+        $plexyglassAmount->addNumberColumn('temps')
+            ->addNumberColumn('quantité de plexiglass');
+            
+            foreach ($plexyglasss as $plexyglass) {
+                $i++;
+                $plexyglassAmount->addRow([$i, $plexyglass->amount]);
+            }
+
+            \Lava::AreaChart('PlexyglassAmount', $plexyglassAmount, [
+            'title' => 'quantité de plexiglass',
+            'legend' => [
+                'position' => 'in'
+            ]
+        ]);
+
+        $MDFs = \DB::table('material')->where('material', '4')->get();
+        $i = 0;
+
+        $MDFAmount = \Lava::DataTable();
+
+        $MDFAmount->addNumberColumn('temps')
+            ->addNumberColumn('quantité de MDF');
+            
+            foreach ($MDFs as $MDF) {
+                $i++;
+                $MDFAmount->addRow([$i, $MDF->amount]);
+            }
+
+            \Lava::AreaChart('MDFAmount', $MDFAmount, [
+            'title' => 'quantité de MDF',
             'legend' => [
                 'position' => 'in'
             ]
