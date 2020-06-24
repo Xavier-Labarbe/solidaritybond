@@ -3,7 +3,7 @@
     @section('main')
 
     <div class="card accountinfo">
-        <form method="POST" action="{{  route('account') }}">
+       <form method="POST" action="{{  route('account') }}">
             @csrf
             <div class="row no-gutters">
                 <div class="col-md-6 form-group">
@@ -89,11 +89,32 @@
             </div>
         </form>
     </div>
+
     @if(\Auth::user()->status == '2')
     <div class="card accountinfo">
         <div class="card-body">
-            <div id="finances-div"></div>
-            {!! \Lava::render('DonutChart', 'apointementstates', 'finances-div') !!}
+            <form class="form-inline" method="POST" action="{{  route('account') }}">
+                @csrf
+                <div class="form-group mx-sm-3 mb-2">
+                    <label>Quantité de plastique restante en mètre : </label>
+                    @php 
+                    $id = \DB::table('material')->where('material', '1')->max('id');
+                    $plastics = \DB::table('material')->where('id', $id)->get();
+                    foreach ($plastics as $plastic) {
+                        $var = $plastic->amount;
+                    }
+                    @endphp
+                    <input name="plastic" type="number" class="form-control" required value="{{  $var }}">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Confirmer</button>
+            </form>
+            <div id="PlasticAmount-div"></div>
+                {!! \Lava::render('AreaChart', 'PlasticAmount', 'PlasticAmount-div') !!}
+            </div>
+
+
+        <div id="apointementstates-div"></div>
+            {!! \Lava::render('DonutChart', 'apointementstates', 'apointementstates-div') !!}
         </div>
     </div>
 

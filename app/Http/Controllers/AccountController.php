@@ -16,7 +16,11 @@ class AccountController extends Controller
 {
     public function index (Request $req)
     {
-        return $this->validator($req);
+        if ($req->plastic == null){
+            return $this->validator($req);
+        }else{
+            return $this->plastic($req);
+        }
     }
 
     protected function validator(Request $req)
@@ -53,5 +57,12 @@ class AccountController extends Controller
             User::where('id', Auth::user()->id)
             ->update(['password'=>Hash::make($req->Newpassword)]);
         }
+    }
+
+    public function plastic (Request $req){
+        \DB::table('material')->insert(
+            ['material' => "1", 'amount' => $req->plastic]
+        );
+        return back();
     }
 }
