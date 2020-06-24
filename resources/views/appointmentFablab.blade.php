@@ -7,10 +7,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <div style="margin-bottom:2rem" class="card">
-                <div class="card-header">Prise de rendez-vous</div>
+            <div style="margin-bottom:2rem" class="apointmentCard">
+                <div class="card-header appointmentText">Prise de rendez-vous</div>
 
-                <div style="padding:0%;padding-top: 1.25rem;" class="card-body">
+                <div style="padding:0%;padding-top: 1.25rem;" class="card-body appointmentText__form">
                     <form method="POST" action="appointment">
                         @csrf
 
@@ -113,8 +113,8 @@
             </div>
 
             <div class="col-md-20">
-                <div class="card">
-                    <div class="card-header">Vos rendez-vous</div>
+                <div class="apointmentCard">
+                    <div class="card-header appointmentText">Vos rendez-vous</div>
                     <ul class="list-group">
                         @php
 
@@ -123,24 +123,45 @@
                         $dt->toDateString();
 
                         $appointments =
-                        \DB::table('appointments')->join('users','appointments.to_id','=','users.id')->where('from_id','=',Auth::user()->id)
+                        \DB::table('appointments')->where('from_id','=',Auth::user()->id)
                         ->orderBy('date')->whereDate('date','>=',$dt)->get();
+
+
+
+
                         foreach ($appointments as $appointment) {
+
+                        $userInfos=
+                        \DB::table('appointments')->join('users','appointments.to_id','=','users.id')->select('name','first_name','users.id')->get();
+
+                        $first_name;
+                        $name;
+                        $id;
+
+                        foreach ($userInfos as $value) {
+                        $first_name=$value->first_name;
+                        $name=$value->name;
+                        $id=$value->id;
+                        }
+
                         $originalDate = $appointment->date;
                         $newDate = date("jS F, Y", strtotime($originalDate));
                         // $newDate = date("d-m-Y", strtotime($originalDate));
                         $newDuration = date("H\hi",strtotime($appointment->duration));
 
 
-                        if($appointment->status='1'){
+                        if($appointment->status==1){
                         $status = "<i class=\"fas fa-hourglass-half\"></i>";
-                        }if($appointment->status='0'){
+                        }if($appointment->status==0){
                         $status ="<i class=\"fas fa-check\"></i>";
+                        }
+                        if($appointment->status==2){
+                        $status ="<i class=\"fas fa-times\"></i>";
                         }
 
                         echo
-                        "<li class=\"list-group-item\">
-                            <div class=\"calendar_container\">
+                        "<li class=\"list-group-item apointmentCard\">
+                            <div class=\"calendar_container appointmentText\">
                                 <div style=\"text-align-last: center;width: 27rem;\">
                                     <h4 style=\"margin-bottom: 0\">$newDate</h4>
                                 </div>
@@ -152,19 +173,19 @@
 
                                 </div>
 
-                                <div class=\" card\" style=\"width: 45rem;\">
+                                <div class=\" apointmentCardLight\" style=\"width: 45rem;\">
                                     <div class=\"card-body\">
                                         <div style=\" display: flex; align-items: baseline; justify-content:
                                             space-between;\">
-                                            <h5 class=\"card-title\">$appointment->first_name $appointment->name</h5>
+                                            <h5 class=\"card-title\">$first_name $name</h5>
                                             $status
                                         </div>
                                         <h6 class=\"card-subtitle mb-2 text-muted\">$appointment->place , le
                                             $newDate</h6>
-                                        <p class=\"card-text\">$appointment->context</p>
-                                        <a href=\"#\" class=\"card-link\">Modifier</a>
-                                        <a href=\"#\" class=\"card-link\">Détails</a>
-                                        <a href=\"conversations/$appointment->to_id\"
+                                        <p style=\"font-size:0.8rem\"class=\"card-text\">$appointment->context</p>
+                                        <a href=\"#\" style=\"font-size:0.8rem\"class=\"card-link\">Modifier</a>
+                                        <a href=\"#\" style=\"font-size:0.8rem\"class=\"card-link\">Détails</a>
+                                        <a href=\"conversations/$appointment->to_id\"style=\"font-size:0.8rem\"
                                             class=\"card-link\">Conversation</a>
 
                                     </div>

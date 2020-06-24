@@ -51,6 +51,8 @@
     -o-animation: fadein 2s; /* Opera */
     background-color: rgba(255, 255, 255, 0.849) !important;
     color: black !important ;
+    font-family: "Raleway", sans-serif;
+    font-size: 1rem;
 }
 
 .acceptAppointment_button :hover {
@@ -66,6 +68,10 @@
 .appointmentText {
     font-family: "Raleway", sans-serif;
     font-size: 1.4rem;
+}
+.appointmentText__form {
+    font-family: "Raleway", sans-serif;
+    font-size: 1rem;
 }
 
 @keyframes fadein {
