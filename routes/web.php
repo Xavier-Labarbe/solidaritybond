@@ -17,9 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/account', function () {
-    return view('account');
-});
+Route::get('/account', 'DiagramController@index');
 
 Route::get('/appointment', function () {
     if (Auth::user()->status == 1) {

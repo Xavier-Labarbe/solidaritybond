@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
     @section('main')
+
     <div class="card accountinfo">
         <form method="POST" action="{{  route('account') }}">
             @csrf
@@ -88,5 +89,15 @@
             </div>
         </form>
     </div>
+    @if(\Auth::user()->status == '2')
+    <div class="card accountinfo">
+        <div class="card-body">
+            <div id="finances-div"></div>
+            {!! \Lava::render('DonutChart', 'apointementstates', 'finances-div') !!}
+        </div>
+    </div>
+
+    @endif
+
 
     @endsection('main')
