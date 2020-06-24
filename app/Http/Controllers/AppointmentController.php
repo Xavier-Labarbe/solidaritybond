@@ -15,7 +15,8 @@ class AppointmentController extends Controller
     {
         if (Auth::user()->status == 1) {
             return view('appointmentClient');
-        } else {
+        }
+        if (Auth::user()->status == 2) {
             return view('appointment');
         }
     }

@@ -24,7 +24,6 @@ Route::get('/appointment', 'AppointmentController@choose');
 
 Route::post('/appointment', 'AppointmentController@index');
 
-Route::post('/appointmentClient', 'AppointmentClientController@index');
 
 
 
