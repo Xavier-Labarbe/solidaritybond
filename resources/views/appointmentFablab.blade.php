@@ -11,7 +11,7 @@
                 <div class="card-header">Prise de rendez-vous</div>
 
                 <div style="padding:0%;padding-top: 1.25rem;" class="card-body">
-                    <form method="POST" action="{{  route('appointment') }}">
+                    <form method="POST" action="appointment">
                         @csrf
 
                         <!-- Personne avec qui prendre le rdv -->
