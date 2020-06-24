@@ -12,7 +12,7 @@ class DiagramController extends Controller
 
         $waiting = \DB::table('appointments')->where('status', '1')->count();
         $Refuse = \DB::table('appointments')->where('status', '2')->count();
-        $Accept = \DB::table('appointments')->where('status', '3')->count();
+        $Accept = \DB::table('appointments')->where('status', '0')->count();
 
         $reasons = \Lava::DataTable();
 
