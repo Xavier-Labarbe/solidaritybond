@@ -27,6 +27,15 @@ Route::get('/appointment', function () {
     }
 });
 
+Route::post('/appointment', function () {
+    if (Auth::user()->status == 1) {
+        Route::post('/appointmentClient', 'AppointmentClientController@index')->name('appointmentClient');
+    } else {
+        Route::post('/appointment', 'AppointmentController@index')->name('appointment');
+    }
+});
+
+
 Route::get('/legalNotice', function () {
     return view('legalNotice');
 });
@@ -52,7 +61,6 @@ Route::get('/helpCalendar', function () {
 
 Auth::routes();
 
-
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'ConversationsController@index')->name('home');
@@ -64,7 +72,6 @@ Route::post('/conversations/{user}', 'ConversationsController@store')
     ->middleware('can:talkTo,user');
 
 Route::post('/account', 'AccountController@index')->name('account');
-Route::post('/appointment', 'AppointmentController@index')->name('appointment');
 
 // Route::get('/signin', 'AuthController@signin');
 // Route::get('/callback', 'AuthController@callback');

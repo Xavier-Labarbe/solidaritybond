@@ -34,10 +34,11 @@ class AppointmentController extends Controller
         //     $validate->errors()->add('hour', 'L\'heure pour la date selectionnée est déjà reservée pour ce lieu.');
         //     return view('appointment')->withErrors($validate->errors());
         // }
-        
+
         $this->addAppointment($req);
         $validate->errors()->add('goodEntrie', 'Le rendez-vous a bien été envoyé !');
-        return view('appointment')->withErrors($validate->errors());
+        view('appointment')->withErrors($validate->errors());
+        return redirect('appointment');
     }
 
     protected function addAppointment(Request $req)
