@@ -60,7 +60,7 @@
                                         </div>
                                         <form method=\"POST\" action=\"appointmentClient\" style=\"display:flex\">
                                             <input style=\"display:none\" name=\"appointment_id\"
-                                                value=". \DB::table('appointments')->where('place',$appointment->place)->whereDate('date','=',$appointment->date)->whereDate('hour','=',$appointment->hour)->get() ." />
+                                                value=". \DB::table('appointments')->where('place',$appointment->place)->whereDate('date','=',$appointment->date)->where('hour','=',$appointment->hour)->get() ." />
                                             <button class=\"acceptAppointment_button \">
                                                 <div class=\" far fa-calendar-check \"></div>
                                             </button>
