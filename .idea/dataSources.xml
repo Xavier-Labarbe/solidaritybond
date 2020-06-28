@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="messagerie@localhost" uuid="030d75db-f2f0-4870-b253-ef67fbaae51d">
+    <data-source source="LOCAL" name="chat@localhost" uuid="b8b26fdd-b37f-4104-a6d0-42308a4d1d7d">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/messagerie</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/chat</jdbc-url>
       <driver-properties>
         <property name="serverTimezone" value="UTC" />
       </driver-properties>

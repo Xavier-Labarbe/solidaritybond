@@ -16,7 +16,7 @@
     </main>
 
     <footer id="footer">
-        @include('layouts/partials/_footer')
+            @include('layouts/partials/_footer')
     </footer>
 </body>
 
