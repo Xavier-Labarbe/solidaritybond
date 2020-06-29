@@ -31,7 +31,17 @@
 
 @else
 @php $var = \DB::table('users')->where('status', '2')->pluck('outlookLink'); @endphp
-<iframe src="@php echo($var[0]); @endphp" class="iframecalendar">
-@endif
-
+@if($var[0] != null)
+@php
+    echo 'aaaaaaaaaaaaaaaaaaaaaa'
+@endphp
+<iframe src="{{ $var[0] }}" class="iframecalendar">
+@else
+        <div class="card text-center">
+            <div class="card-body">
+                <label class="col-md-4 col-form-label">Le fablab manager n'a pas encore rentré son calendrier</label>
+            </div>
+        </div>
+        @endif
+        @endif
 @endsection
