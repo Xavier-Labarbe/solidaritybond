@@ -1,0 +1,121 @@
+.corp {
+    margin: 0 auto;
+    float: none;
+    max-width: 90%;
+    margin-top: 30px;
+}
+
+@media only screen and (min-width: 765px) {
+    .imgfablab {
+        height: auto;
+        width: 150%;
+    }
+
+    .secondcardbody {
+        max-width: 50%;
+    }
+}
+
+.firstcardbody {
+    float: left;
+    margin-right: 15px;
+}
+
+.description {
+    text-align: justify;
+    font-size: 105%;
+}
+
+.card-header {
+    text-align: center;
+}
+
+.column {
+    text-align: center;
+}
+
+.card-header {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    animation: auto;
+    font-size: x-large;
+}
+
+/* .card {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color: white;
+} */
+
+.welcomeCard {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color: white !important ;
+}
+
+.welcomeTitle {
+    font-family: "Raleway", sans-serif;
+    font-size: 1.75rem;
+    letter-spacing: 0.1em;
+}
+.welcommeTitle_small {
+    font-family: "Raleway", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    padding-bottom: 0.6rem;
+}
+.welcomeDescription {
+    font-family: "Raleway", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 1.25rem;
+}
+
+.welcomeImage {
+    transition: all 0.2s ease-in-out;
+}
+
+.welcomeImage:hover {
+    transform: scale(1.1);
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-moz-keyframes fadein {
+    /* Firefox */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes fadein {
+    /* Safari and Chrome */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-o-keyframes fadein {
+    /* Opera */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
