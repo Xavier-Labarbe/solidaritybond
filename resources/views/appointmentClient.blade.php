@@ -16,7 +16,7 @@
                         $dt->toDateString();
 
                         $appointments =
-                        \DB::table('appointments')->join('users','appointments.from_id','=','users.id')->where([['to_id','=',Auth::user()->id],['appointments.status','=',1]])
+                        \DB::table('users')->join('appointments','appointments.from_id','=','users.id')->where([['to_id','=',Auth::user()->id],['appointments.status','=',1]])
                         ->orderBy('date')->whereDate('date','>=',$dt)->get();
                         foreach ($appointments as $appointment) {
                         $originalDate = $appointment->date;
@@ -58,13 +58,30 @@
                                             <a href=\"conversations/$appointment->to_id\"
                                                 class=\"card-link\">Conversation</a>
                                         </div>
-                                        <form method=\"POST\" action=\"appointmentClient\" style=\"display:flex\">
-                                            <input style=\"display:none\" name=\"appointment_id\"
-                                                value=". \DB::table('appointments')->where('place',$appointment->place)->whereDate('date','=',$appointment->date)->where('hour','=',$appointment->hour)->get() ." />
-                                            <button class=\"acceptAppointment_button \">
+                                        <input style=\"display:none\" name=\"appointment_id\"
+                                            value=". \DB::table('appointments')->where('place',$appointment->place)->whereDate('date','=',$appointment->date)->where('hour','=',$appointment->hour)->get() ." />
+
+                                        <form method=\"POST\" action=\"acceptAppointment\" style=\"display:flex\">";
+
+
+                                            @endphp
+                                            @csrf
+                                            @php
+                                            echo //$appointment->id;
+                                            "<input id=\"id\" hidden value=\"$appointment->id\">
+                                            <button type=\"submit\" class=\"acceptAppointment_button \">
                                                 <div class=\" far fa-calendar-check \"></div>
                                             </button>
-                                            <button class=\"denyAppointment_button \">
+                                        </form>
+                                        <form method=\"POST\" action=\"denyAppointment\" style=\"display:flex\">";
+
+
+                                            @endphp
+                                            @csrf
+                                            @php
+                                            echo
+                                            "<input id=\"id\" hidden value=\"$appointment->id\"/>
+                                            <button type=\"submit\" class=\"denyAppointment_button \">
                                                 <div class=\" fas fa-times \"></div>
                                             </button>
                                         </form>

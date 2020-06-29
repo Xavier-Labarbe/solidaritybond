@@ -25,6 +25,7 @@ class AddAppointment extends Migration
             $table->string('hour');
             $table->string('duration');
             $table->integer('status')->unsigned();
+            $table->timestamp('updated_at');
         });
     }
 

@@ -12,7 +12,7 @@ class Appointment extends Model
      * @var array
      */
     protected $fillable = [
-        'from_id', 'context', 'place', 'date' => 'date:d/m/Y', 'hour' => 'date:hh:mm'
+        'from_id', 'to_id', 'context', 'place', 'date' => 'date:d/m/Y', 'hour' => 'date:hh:mm', 'duration', 'status'
     ];
 
     protected $dates = ['date', 'hour'];
