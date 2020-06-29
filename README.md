@@ -51,47 +51,45 @@ cd solidaritybond
 composer install
 npm install
 ```
-Vous devrez par la suite créer un base de donnée mysql avec le nom que vous souhaité. 
+Vous devrez par la suite créer un base de donnée mysql avec le nom que vous souhaité.  
 
-Modifiez le .env.example en .env et rentrez y les paramètres de votre base de données.
-
- 
+Modifiez le .env.example en .env et rentrez y les paramètres de votre base de données.  
 
 Générez par la suite la clé d’application avec :  
 
+```
 php artisan key:generate 
+```
 
 Migrez vos données :  
 
+```
 php artisan migrate 
+```
 
 Générer une clé d’authentification d’api avec Laravel/passport :  
-
+```
 php artisan passport:keys 
+```
 
 ### Lancer notre solution 
 
 Pour lancer notre solution, il faut : 
 
 Lancer le serveur laravel : 
-
+```
 php artisan serve 
-
+```
 Lancer le serveur node : 
-
+```
 npm run hot 
+```
 
 Lancer le serveur Laravel-Echo : 
-
+```
 laravel-echo-server start  
-
+```
 Avec tout ceci de lancer, la solution est lancée et vous pouvez vous diriger vers l’adresse de votre site : http://localhost:8000/ 
-
- 
-
-
-
-
 
 ## Auteurs
 Nous sommes une équipe composée de 4 étudiants du CESI Bordeaux que voici :  
