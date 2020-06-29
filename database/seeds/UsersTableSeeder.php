@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        Illuminate\Support\Facades\DB::table('users')->insert([
             'name' => "El Khalfi",
             'first_name' => "Zeineb",
             'adress' => "CESI Bordeaux",
@@ -19,8 +19,8 @@ class UsersTableSeeder extends Seeder
             'phone' => "0600000000",
             'status' => "1",
             'password' => bcrypt('zeineb')]);
-        
-        DB::table('users')->insert([
+
+        Illuminate\Support\Facades\DB::table('users')->insert([
             'name' => "Teillier",
             'first_name' => "Elea",
             'adress' => "Fablab CESI",
