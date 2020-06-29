@@ -36,7 +36,8 @@ End with an example of getting some data out of the system or using it for a lit
 
 
 ## Auteurs
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+Nous sommes une équipe composée de 4 étudiants du CESI Bordeaux que voici :
+**labarbe Xavier** [Github](https://github.com/Xavier-Labarbe)
+**Jeannot Elouan** [Github](https://github.com/elouanj)
+**Forques Pierre** [Github](https://github.com/PierroCesi)
+**Berger Matéo** [Github](https://github.com/matheoberger)
