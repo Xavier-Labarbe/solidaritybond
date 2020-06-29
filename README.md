@@ -10,23 +10,37 @@ Tout d'abord, pour un bon fonctionnement du site et pour pouvoir suivre correcte
 ### Installation prérequise
 
 Vous devez aussi avoir installé plusieurs outils sur votre ordinateur avant de commencer :
-- Php
+- php 
 ```
-sudo apt install php
+sudo apt-get install php //ubuntu
+dnf install php //fedora
 ```
-- Mysql
+- mysql 
 ```
-sudo apt install mysql-server php-mysql
+sudo apt-get install mysql-server //ubuntu
+dnf install community-mysql-server //fedora
 ```
-- Npm
+- L’extension php-mysql pour la communication entre php et mysql
 ```
-sudo apt install npm
+sudo apt-get install php-mysql //ubuntu
+dnf install php-mysqlnd //fedora
 ```
-- Composer
+- composer 
 
-- Redis
+- Redis 
 ```
-sudo apt install redis-server
+sudo apt-install redis-server //ubuntu
+dnf install php-pecl-redis //fedora
+```
+- npm 
+```
+sudo apt-get install npm //ubuntu
+dnf install npm //fedora
+```
+
+- Laravel-Echo-Server 
+```
+npm install -g Laravel-echo-server all redis-server
 ```
 
 ### Installation du projet
