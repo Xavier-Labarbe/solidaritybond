@@ -25,4 +25,11 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
+
+    public function calendar()
+    {
+      $viewData = $this->loadViewData();
+  
+      return view('calendar', $viewData);
+    }
 }

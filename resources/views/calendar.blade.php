@@ -2,7 +2,7 @@
 
 @section('main')
 
-@if(\Auth::user()->outlookLink == null && Auth::user()->status == '2')
+{{--@if(\Auth::user()->outlookLink == null && Auth::user()->status == '2')
 <!--include('layouts/partials/_linkOutlook');-->
 
 <div class="card-body">
@@ -40,5 +40,19 @@
     </div>
 </div>
 @endif
-@endif
+@endif--}}
+<div class="jumbotron accountinfo">
+    <h1>Calendrier Outlook</h1>
+    <p class="lead">Bienvenue ! Vous pouvez maintenant vous connecter ou acceder aux services d'outlook.</p>
+    @if(isset($userName))
+      <h4>Vous etes connecté en tant que {{ $userName }} !</h4>
+      <h5>Vous etes connecté avec l'email {{ $userEmail }}</h5>
+      <p>Vous avez maintenant accès aux options suivantes : </p>
+        <a href="/microsoftCalendar" class="btn btn-primary">Calendar</a>
+        <a href="/appointment" class="btn btn-primary">Appointment</a>
+        <a href="/signout" class="btn btn-danger">Sign Out</a>
+    @else
+      <a href="/signin" class="btn btn-primary btn-large">Click here to sign in</a>
+    @endif
+  </div>
 @endsection

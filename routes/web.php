@@ -44,7 +44,13 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/calendar', function () {
+Route::get('/calendar', 'HomeController@calendar');
+Route::get('/signin', 'MicrosoftAuthController@signin');
+Route::get('/callback', 'MicrosoftAuthController@callback');
+Route::get('/signout', 'MicrosoftAuthController@signout');
+Route::get('/microsoftCalendar', 'MicrosoftCalendarController@calendar');
+
+/*Route::get('/calendar', function () {
     return view('calendar');
 });
 
@@ -53,7 +59,7 @@ Route::post('/calendar', function () {
     App\User::where('id', Auth::user()->id)->update(['outlookLink' => $link]);
 
     return redirect('/calendar');
-});
+});*/
 
 Route::get('/helpCalendar', function () {
     return view('helpCalendar');
