@@ -19,7 +19,8 @@
         "laravel/passport": "^9.2",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "league/oauth2-client": "^2.4",
+        "league/oauth2-client": "dev-master",
+        "microsoft/microsoft-graph": "^1.14",
         "predis/predis": "^1.1"
     },
     "require-dev": {
