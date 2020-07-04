@@ -52,7 +52,7 @@ class AppointmentController extends Controller
         // }
 
         $this->addAppointment($req);
-        $this->postsMicrosoft($req);
+
         $validate->errors()->add('goodEntrie', 'Le rendez-vous a bien été envoyé !');
         return view('appointmentFablab')->withErrors($validate->errors());
     }
@@ -79,7 +79,7 @@ class AppointmentController extends Controller
     $graph->setAccessToken($accessToken);
 
     $data = [
-        'Subject' => $req->reason,
+        'Subject' => $req->first_name." ".$req->context,
         'Start' => [
             'DateTime' => '2020-07-07T20:00:00',//$req->date,'T',$req->hour,
             'TimeZone' => 'Europe/Paris',
@@ -105,6 +105,13 @@ class AppointmentController extends Controller
     public function accept(Request $req)
     {
     \DB::table('appointments')->where('id', $req->id)->update(['status' => 0]);
+    $viewData = $this->loadViewData();
+
+    $this->postsMicrosoft($req);
+    
+
+
+
     return redirect('/appointment');
     }
 

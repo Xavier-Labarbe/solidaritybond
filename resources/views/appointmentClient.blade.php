@@ -68,7 +68,18 @@
                                             @csrf
                                             @php
                                             echo
+
                                             "<input name=\"id\" id=\"id\" hidden value=\"$appointment->id\">
+                                            <input name=\"context\" id=\"contexte\" hidden
+                                                value=\"$appointment->context\">
+                                            <input name=\"place\" id=\"place\" hidden value=\"$appointment->place\">
+                                            <input name=\"date\" id=\"date\" hidden value=\"$appointment->date\">
+                                            <input name=\"hour\" id=\"hour\" hidden value=\"$appointment->hour\">
+                                            <input name=\"first_name\" id=\"first_name\" hidden
+                                                value=\"$appointment->first_name\">
+                                            <input name=\"duration\" id=\"duration\" hidden
+                                                value=\"$appointment->duration\">
+
                                             <button type=\"submit\" class=\"acceptAppointment_button \">
                                                 <div class=\" far fa-calendar-check \"></div>
                                             </button>
