@@ -42,11 +42,11 @@ class MicrosoftAuthController extends Controller
     if (!isset($expectedState)) {
       // If there is no expected state in the session,
       // do nothing and redirect to the home page.
-      return redirect('/calendar');
+      return redirect('/');
     }
 
     if (!isset($providedState) || $expectedState != $providedState) {
-      return redirect('/calendar')
+      return redirect('/')
         ->with('error', 'Invalid auth state')
         ->with('errorDetail', 'The provided auth state did not match the expected value');
     }
@@ -81,24 +81,24 @@ class MicrosoftAuthController extends Controller
         $tokenCache = new TokenCache();
         $tokenCache->storeTokens($accessToken, $user);
       
-        return redirect('/calendar');
+        return redirect('/');
       }
       catch (League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {
-        return redirect('/calendar')
+        return redirect('/')
           ->with('error', 'Error requesting access token')
           ->with('errorDetail', $e->getMessage());
       }
     }
 
-    return redirect('/calendar')
+    return redirect('/')
       ->with('error', $request->query('error'))
       ->with('errorDetail', $request->query('error_description'));
   }
 
-    public function signout()
+  public function signout()
     {
-    $tokenCache = new TokenCache();
-    $tokenCache->clearTokens();
-    return redirect('/calendar');
+        $tokenCache = new TokenCache();
+        $tokenCache->clearTokens();
+        return redirect('/');
     }
 }
