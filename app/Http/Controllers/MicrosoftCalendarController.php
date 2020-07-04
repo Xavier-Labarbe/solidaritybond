@@ -23,7 +23,7 @@ class MicrosoftCalendarController extends Controller
     $graph->setAccessToken($accessToken);
 
     $queryParams = array(
-      '$select' => 'subject,organizer,start,end',
+      '$select' => 'subject,organizer,start,end,location',
       '$orderby' => 'createdDateTime DESC'
     );
 

@@ -6,6 +6,9 @@ use App\Appointment;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Validator;
+use Microsoft\Graph\Graph;
+use Microsoft\Graph\Model;
+use App\TokenStore\TokenCache;
 
 
 class AppointmentController extends Controller
@@ -49,6 +52,7 @@ class AppointmentController extends Controller
         // }
 
         $this->addAppointment($req);
+        $this->postsMicrosoft($req);
         $validate->errors()->add('goodEntrie', 'Le rendez-vous a bien été envoyé !');
         return view('appointmentFablab')->withErrors($validate->errors());
     }
@@ -59,6 +63,44 @@ class AppointmentController extends Controller
             ['from_id' => Auth::user()->id, 'to_id' => $req->client, 'context' => $req->reason, 'place' => $req->place, 'date' => $req->date, 'hour' => $req->hour, 'duration' => $req->duration, 'status' => "1"]
         );
     }
+
+    public function postsMicrosoft($req)
+    {
+    //echo $req->date,'T',$req->hour;
+    //echo '2020-07-03T20:00:00';
+    $viewData = $this->loadViewData();
+
+    // Get the access token from the cache
+    $tokenCache = new TokenCache();
+    $accessToken = $tokenCache->getAccessToken();
+
+    // Create a Graph client
+    $graph = new Graph();
+    $graph->setAccessToken($accessToken);
+
+    $data = [
+        'Subject' => $req->reason,
+        'Start' => [
+            'DateTime' => '2020-07-07T20:00:00',//$req->date,'T',$req->hour,
+            'TimeZone' => 'Europe/Paris',
+        ],
+        'End' => [
+            'DateTime' => '2020-07-07T20:00:00',
+            'TimeZone' => 'Europe/Paris',
+        ],
+        "location" => [
+            "DisplayName" => $req->place,
+        ]
+    ];
+
+    // Append query parameters to the '/me/events' url
+    $url = '/me/events';
+
+    $events = $graph->createRequest('POST', $url)
+        ->attachBody($data)
+        ->setReturnType(Model\Event::class)
+        ->execute();
+  }
 
     public function accept(Request $req)
     {

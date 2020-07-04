@@ -1,29 +1,43 @@
 @extends('layouts.main')
 
 @section('main')
-<div class="card accountinfo">
-<h1>Calendrier</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Organisateur</th>
-      <th scope="col">sujet</th>
-      <th scope="col">Début</th>
-      <th scope="col">Fin</th>
-    </tr>
-  </thead>
-  <tbody>
-        @isset($events)
-        @foreach($events as $event)
-            <tr>
-            <td>{{ $event->getOrganizer()->getEmailAddress()->getName() }}</td>
-            <td>{{ $event->getSubject() }}</td>
-            <td>{{ \Carbon\Carbon::parse($event->getStart()->getDateTime())->format('m/d/Y H:i') }}</td>
-            <td>{{ \Carbon\Carbon::parse($event->getEnd()->getDateTime())->format('m/d/Y H:i') }}</td>
-            </tr>
-        @endforeach
-        @endif
+@if(\Auth::user()->outlookLink == null && Auth::user()->status == '2')
+<!--include('layouts/partials/_linkOutlook');-->
+
+<div class="card-body">
+
+    <form method="POST" action="">
+        {{csrf_field()}}
+
+        <div class="card text-center">
+            <div class="card-header">
+                <a>Pour avoir accès à votre calendrier outlook, veuillez rentrez votre lien de publication
+                    outlook.</a><a href="helpCalendar"> Vous ne savez pas ou il se trouve ?</a>
+            </div>
+            <div class="card-body">
+                <label class="col-md-4 col-form-label">Rentrez le lien de
+                    publication
+                    outlook</label>
+                <textarea id="link" type="text" class="form-control" name="link" required autocomplete="link"
+                    autofocus></textarea>
+                <button type="submit" class="btn btn-primary">
+                    Envoyez
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@else
+@php $var = \DB::table('users')->where('status', '2')->pluck('outlookLink'); @endphp
+@if($var[0] != null)
+<iframe src="{{ $var[0] }}" class="iframecalendar">
+@else
+<div class="card text-center">
+    <div class="card-body">
+        <label class="col-md-4 col-form-label">Le fablab manager n'a pas encore rentré son calendrier</label>
     </div>
-  </tbody>
-</table>
+</div>
+@endif
+@endif
 @endsection
