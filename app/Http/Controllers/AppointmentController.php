@@ -59,4 +59,17 @@ class AppointmentController extends Controller
             ['from_id' => Auth::user()->id, 'to_id' => $req->client, 'context' => $req->reason, 'place' => $req->place, 'date' => $req->date, 'hour' => $req->hour, 'duration' => $req->duration, 'status' => "1"]
         );
     }
+
+    public function accept(Request $req)
+    {
+    \DB::table('appointments')->where('id', $req->id)->update(['status' => 0]);
+    return redirect('/appointment');
+    }
+
+    public function deny(Request $req)
+    {
+    \DB::table('appointments')->where('id', $req->id)->update(['status' => 2]);
+    return redirect('/appointment');
+    }
+
 }

@@ -67,8 +67,8 @@
                                             @endphp
                                             @csrf
                                             @php
-                                            echo //$appointment->id;
-                                            "<input id=\"id\" hidden value=\"$appointment->id\">
+                                            echo
+                                            "<input name=\"id\" id=\"id\" hidden value=\"$appointment->id\">
                                             <button type=\"submit\" class=\"acceptAppointment_button \">
                                                 <div class=\" far fa-calendar-check \"></div>
                                             </button>
@@ -80,7 +80,7 @@
                                             @csrf
                                             @php
                                             echo
-                                            "<input id=\"id\" hidden value=\"$appointment->id\"/>
+                                            "<input name=\"id\" id=\"id\" hidden value=\"$appointment->id\"/>
                                             <button type=\"submit\" class=\"denyAppointment_button \">
                                                 <div class=\" fas fa-times \"></div>
                                             </button>

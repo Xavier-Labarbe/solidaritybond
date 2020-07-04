@@ -65,12 +65,8 @@ Route::get('/helpCalendar', function () {
     return view('helpCalendar');
 });
 
-Route::post('/acceptAppointment', function () {
-    $id = request('id');
-    App\Appointment::where('id', $id)->update(['status' => 0]);
-    echo("ebou");
-    //return redirect('/appointment');
-});
+Route::post('/acceptAppointment', 'AppointmentController@accept')->name('acceptAppointment');
+Route::post('/denyAppointment', 'AppointmentController@deny')->name('denyAppointment');
 
 Route::post('/denyAppointment', function () {
     $id = request('id');
