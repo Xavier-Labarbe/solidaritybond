@@ -183,8 +183,18 @@
                                         <h6 class=\"card-subtitle mb-2 text-muted\">$appointment->place , le
                                             $newDate</h6>
                                         <p style=\"font-size:0.8rem\"class=\"card-text\">$appointment->context</p>
-                                        <a href=\"#\" style=\"font-size:0.8rem\"class=\"card-link\">Modifier</a>
-                                        <a href=\"#\" style=\"font-size:0.8rem\"class=\"card-link\">Détails</a>
+                                        <form action=\"deleteAppointment\" method=\"POST\">";
+
+                                            {{method_field('DELETE')}}
+                                            {{csrf_token}}
+
+                                            echo"
+                                            <input hidden value=$appointment->id>
+                                            <input type=\"submit\" value=\"delete\">
+                                        </form>
+
+                                        <a href=\"#\" style=\"font-size:0.8rem\"class=\"card-link\">
+                                            Modifier</a>
                                         <a href=\"conversations/$appointment->to_id\"style=\"font-size:0.8rem\"
                                             class=\"card-link\">Conversation</a>
 

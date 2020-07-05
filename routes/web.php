@@ -50,19 +50,13 @@ Route::get('/callback', 'MicrosoftAuthController@callback');
 Route::get('/signout', 'MicrosoftAuthController@signout');
 Route::get('/microsoftCalendar', 'MicrosoftCalendarController@calendar');
 
-/*Route::get('/calendar', function () {
-    return view('calendar');
-});
-
-Route::post('/calendar', function () {
-    $link = request('link');
-    App\User::where('id', Auth::user()->id)->update(['outlookLink' => $link]);
-
-    return redirect('/calendar');
-});*/
 
 Route::get('/helpCalendar', function () {
     return view('helpCalendar');
+});
+
+Route::get('/modify', function () {
+    return view('modifyAppointment');
 });
 
 Route::post('/acceptAppointment', 'AppointmentController@accept')->name('acceptAppointment');
@@ -81,10 +75,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/account', 'AccountController@index')->name('account');
 
-// Route::get('/signin', 'AuthController@signin');
-// Route::get('/callback', 'AuthController@callback');
-// Route::get('/signout', 'AuthController@signout');
-// Route::get('/calendar', 'CalendarController@calendar');
-
 Route::get('/conversations', 'ConversationsController@index')->name('conversations');
 Route::get('/conversations/{user}', 'ConversationsController@index');
+
+Route::delete('/deleteAppointment', 'AppointmentController@delete');

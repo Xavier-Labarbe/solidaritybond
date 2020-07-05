@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Microsoft\Graph\Graph;
 use Microsoft\Graph\Model;
 use App\TokenStore\TokenCache;
-
+use DateTime;
+use DateInterval;
 
 class AppointmentController extends Controller
 {
@@ -78,14 +79,19 @@ class AppointmentController extends Controller
     $graph = new Graph();
     $graph->setAccessToken($accessToken);
 
+    $fullDate = new DateTime($req->date.$req->hour);
+    $tabDuration = explode(':',$req->duration);
+    $fullDate->add(new DateInterval('PT'.$tabDuration[0].'H'.$tabDuration[1].'M'));
+    $completeDate = $fullDate->format('Y-m-d')."T".$fullDate->format('H:i:s');
+
     $data = [
         'Subject' => $req->first_name." ".$req->context,
         'Start' => [
-            'DateTime' => '2020-07-07T20:00:00',//$req->date,'T',$req->hour,
+            'DateTime' => $req->date.'T'.$req->hour,
             'TimeZone' => 'Europe/Paris',
         ],
         'End' => [
-            'DateTime' => '2020-07-07T20:00:00',
+            'DateTime' => $completeDate,
             'TimeZone' => 'Europe/Paris',
         ],
         "location" => [
@@ -93,7 +99,7 @@ class AppointmentController extends Controller
         ]
     ];
 
-    // Append query parameters to the '/me/events' url
+
     $url = '/me/events';
 
     $events = $graph->createRequest('POST', $url)
@@ -108,10 +114,6 @@ class AppointmentController extends Controller
     $viewData = $this->loadViewData();
 
     $this->postsMicrosoft($req);
-    
-
-
-
     return redirect('/appointment');
     }
 
@@ -119,6 +121,36 @@ class AppointmentController extends Controller
     {
     \DB::table('appointments')->where('id', $req->id)->update(['status' => 2]);
     return redirect('/appointment');
+    }
+
+  
+        
+    public function delete(Request $req)
+    {
+
+    $viewData = $this->loadViewData();
+
+    // Get the access token from the cache
+    $tokenCache = new TokenCache();
+    $accessToken = $tokenCache->getAccessToken();
+
+    // Create a Graph client
+    $graph = new Graph();
+    $graph->setAccessToken($accessToken);
+
+    $queryParams = array(
+        '$id' => $req->id
+      );
+
+    $urll = '/me/events';
+    $url = '/me/events?'.http_build_query($queryParams);
+
+    $events = $graph->createRequest('DELETE', $url)
+        ->setReturnType(Model\Event::class)
+        ->execute();
+
+    return redirect('/appointment');
+    
     }
 
 }
