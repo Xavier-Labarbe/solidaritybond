@@ -67,90 +67,88 @@ class AppointmentController extends Controller
 
     public function postsMicrosoft($req)
     {
-    //echo $req->date,'T',$req->hour;
-    //echo '2020-07-03T20:00:00';
-    $viewData = $this->loadViewData();
+        //echo $req->date,'T',$req->hour;
+        //echo '2020-07-03T20:00:00';
+        $viewData = $this->loadViewData();
 
-    // Get the access token from the cache
-    $tokenCache = new TokenCache();
-    $accessToken = $tokenCache->getAccessToken();
+        // Get the access token from the cache
+        $tokenCache = new TokenCache();
+        $accessToken = $tokenCache->getAccessToken();
 
-    // Create a Graph client
-    $graph = new Graph();
-    $graph->setAccessToken($accessToken);
+        // Create a Graph client
+        $graph = new Graph();
+        $graph->setAccessToken($accessToken);
 
-    $fullDate = new DateTime($req->date.$req->hour);
-    $tabDuration = explode(':',$req->duration);
-    $fullDate->add(new DateInterval('PT'.$tabDuration[0].'H'.$tabDuration[1].'M'));
-    $completeDate = $fullDate->format('Y-m-d')."T".$fullDate->format('H:i:s');
+        $fullDate = new DateTime($req->date . $req->hour);
+        $tabDuration = explode(':', $req->duration);
+        $fullDate->add(new DateInterval('PT' . $tabDuration[0] . 'H' . $tabDuration[1] . 'M'));
+        $completeDate = $fullDate->format('Y-m-d') . "T" . $fullDate->format('H:i:s');
 
-    $data = [
-        'Subject' => $req->first_name." ".$req->context,
-        'Start' => [
-            'DateTime' => $req->date.'T'.$req->hour,
-            'TimeZone' => 'Europe/Paris',
-        ],
-        'End' => [
-            'DateTime' => $completeDate,
-            'TimeZone' => 'Europe/Paris',
-        ],
-        "location" => [
-            "DisplayName" => $req->place,
-        ]
-    ];
+        $data = [
+            'Subject' => $req->first_name . " " . $req->context,
+            'Start' => [
+                'DateTime' => $req->date . 'T' . $req->hour,
+                'TimeZone' => 'Europe/Paris',
+            ],
+            'End' => [
+                'DateTime' => $completeDate,
+                'TimeZone' => 'Europe/Paris',
+            ],
+            "location" => [
+                "DisplayName" => $req->place,
+            ]
+        ];
 
 
-    $url = '/me/events';
+        $url = '/me/events';
 
-    $events = $graph->createRequest('POST', $url)
-        ->attachBody($data)
-        ->setReturnType(Model\Event::class)
-        ->execute();
-  }
+        $events = $graph->createRequest('POST', $url)
+            ->attachBody($data)
+            ->setReturnType(Model\Event::class)
+            ->execute();
+    }
 
     public function accept(Request $req)
     {
-    \DB::table('appointments')->where('id', $req->id)->update(['status' => 0]);
-    $viewData = $this->loadViewData();
+        \DB::table('appointments')->where('id', $req->id)->update(['status' => 0]);
+        $viewData = $this->loadViewData();
 
-    $this->postsMicrosoft($req);
-    return redirect('/appointment');
+        $this->postsMicrosoft($req);
+        return redirect('/appointment');
     }
 
     public function deny(Request $req)
     {
-    \DB::table('appointments')->where('id', $req->id)->update(['status' => 2]);
-    return redirect('/appointment');
+        \DB::table('appointments')->where('id', $req->id)->update(['status' => 2]);
+        return redirect('/appointment');
     }
 
-  
-        
+
+
     public function delete(Request $req)
     {
 
-    $viewData = $this->loadViewData();
+        $viewData = $this->loadViewData();
 
-    // Get the access token from the cache
-    $tokenCache = new TokenCache();
-    $accessToken = $tokenCache->getAccessToken();
+        // Get the access token from the cache
+        $tokenCache = new TokenCache();
+        $accessToken = $tokenCache->getAccessToken();
 
-    // Create a Graph client
-    $graph = new Graph();
-    $graph->setAccessToken($accessToken);
+        // Create a Graph client
+        $graph = new Graph();
+        $graph->setAccessToken($accessToken);
 
-    $queryParams = array(
-        '$id' => $req->id
-      );
+        $queryParams = array(
+            '$id' => $req->id
+        );
 
-    $urll = '/me/events';
-    $url = '/me/events?'.http_build_query($queryParams);
+        // $urll = '/me/events';
+        $url = '/me/events?' . http_build_query($queryParams);
 
-    $events = $graph->createRequest('DELETE', $url)
-        ->setReturnType(Model\Event::class)
-        ->execute();
+        $events = $graph->createRequest('DELETE', $url)
+            ->setReturnType(Model\Event::class)
+            ->execute();
 
-    return redirect('/appointment');
-    
+        return redirect('/appointment');
     }
-
 }
